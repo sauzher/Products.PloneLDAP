@@ -1,7 +1,10 @@
+import logging
+import sys
+from Acquisition import aq_base
 from AccessControl import ClassSecurityInfo
-from Products.LDAPMultiPlugins.LDAPPluginBase import LDAPPluginBase
 from Products.PluggableAuthService.utils import classImplements, createViewName
-
+from Products.PluggableAuthService.PluggableAuthService import \
+        _SWALLOWABLE_PLUGIN_EXCEPTIONS
 
 from Products.PluggableAuthService.interfaces.plugins import \
      IAuthenticationPlugin, IRolesPlugin, \
@@ -12,8 +15,9 @@ from Products.PlonePAS.interfaces.group import IGroupIntrospection, \
 from Products.PlonePAS.interfaces.capabilities import IGroupCapability
 from Products.PlonePAS.interfaces.plugins import IMutablePropertiesPlugin
 from Products.PlonePAS.plugins.group import PloneGroup
-from Products.CMFCore.utils import getToolByName
 from Products.PloneLDAP.plugins.property import LDAPPropertySheet
+
+logger = logging.getLogger("PloneLDAP")
 
 
 class PloneLDAPPluginBaseMixin:
@@ -320,9 +324,8 @@ class PloneLDAPPluginBaseMixin:
                         return id
 
                 except _SWALLOWABLE_PLUGIN_EXCEPTIONS:
-                    LOG('PluggableAuthService', BLATHER,
-                        'GroupEnumerationPlugin %s error' % enumerator_id,
-                        error=sys.exc_info())
+                    logger.info('PluggableAuthService: GroupEnumerationPlugin %s error' %
+                            enumerator_id, error=sys.exc_info())
 
         return 0
     

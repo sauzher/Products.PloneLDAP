@@ -1,3 +1,4 @@
+import logging
 from zope.interface import implementedBy
 from AccessControl import ClassSecurityInfo
 from App.class_init import default__class_init__ as InitializeClass
@@ -9,6 +10,7 @@ from Products.PluggableAuthService.utils import classImplements
 from Products.PlonePAS.interfaces.plugins import IUserManagement
 from Products.PloneLDAP.plugins.base import PloneLDAPPluginBaseMixin
 
+logger = logging.getLogger("PloneLDAP")
 
 class PloneLDAPMultiPlugin(PloneLDAPPluginBaseMixin, LDAPMultiPlugin):
     """Plone LDAP plugin.
@@ -44,8 +46,7 @@ class PloneLDAPMultiPlugin(PloneLDAPPluginBaseMixin, LDAPMultiPlugin):
         res=acl.manage_addUser(kwargs=attrs)
 
         if res:
-            zLOG.LOG('LDAPMP', zLOG.PROBLEM,
-                     'manage_addUser failed with %s' % res)
+            logger.error('manage_addUser failed with %s' % res)
 
         view_name = self.getId() + '_enumerateUsers'
         self.ZCacheable_invalidate(view_name = view_name,)

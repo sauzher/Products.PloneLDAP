@@ -1,4 +1,3 @@
-from Acquisition import aq_base
 from Products.CMFCore.utils import getToolByName
 from Products.PluggableAuthService.utils import classImplements
 from Products.PluggableAuthService.UserPropertySheet import UserPropertySheet
