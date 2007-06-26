@@ -1,7 +1,8 @@
 from Globals import InitializeClass
+from AccessControl import ClassSecurityInfo
 from Products.PloneLDAP.property import LDAPPropertySheet
 
-class UserPropertiesSMixin:
+class UserPropertiesMixin:
     """Implement Products.PluggableAuthService.interfaces.plugins.IPropertiesPlugin
     and Products.PlonePAS.interfaces.plugtins.IMutablePropertiesPlugin
     """

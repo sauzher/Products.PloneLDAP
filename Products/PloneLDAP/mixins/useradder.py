@@ -1,4 +1,8 @@
+import logging
 from Globals import InitializeClass
+from AccessControl import ClassSecurityInfo
+
+logger = logging.getLogger("PloneLDAP")
 
 class UserAdderMixin:
     """Implement Products.PluggableAuthService.interfaces.plugins.IUserAdderPlugin

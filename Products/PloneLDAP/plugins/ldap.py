@@ -13,15 +13,20 @@ from Products.PloneLDAP.mixins import UserAdderMixin
 from Products.PloneLDAP.mixins import UserManagementMixin
 from Products.PloneLDAP.mixins import UserPropertiesMixin
 
+from Products.PloneLDAP.mixins import GroupCapabilityMixin
+from Products.PloneLDAP.mixins import GroupIntrospectionMixin
+from Products.PloneLDAP.mixins import GroupManagementMixin
+
 logger = logging.getLogger("PloneLDAP")
 
-class PloneLDAPMultiPlugin(PloneLDAPPluginBaseMixin, UserAdderMixin,
-        UserManagementMixin, UserPropertiesMixin, LDAPMultiPlugin):
-    """Plone LDAP plugin.
+class PloneLDAPMultiPlugin(PloneLDAPPluginBaseMixin,
+        UserAdderMixin, UserManagementMixin, UserPropertiesMixin, 
+        GroupCapabilityMixin, GroupIntrospectionMixin, GroupManagementMixin,
+        LDAPMultiPlugin):
+    """Plone LDAP plugin. Yeah baby.
     """
     security = ClassSecurityInfo()
     meta_type = "Plone LDAP plugin"
-
 
 
 classImplements(PloneLDAPMultiPlugin
