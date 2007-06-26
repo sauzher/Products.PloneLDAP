@@ -1,7 +1,7 @@
 import logging
 from zope.interface import implementedBy
 from AccessControl import ClassSecurityInfo
-from App.class_init import default__class_init__ as InitializeClass
+from Globals import InitializeClass
 from Products.LDAPMultiPlugins.LDAPMultiPlugin import LDAPMultiPlugin
 from Products.PluggableAuthService.interfaces.plugins import \
      IUserEnumerationPlugin, IGroupsPlugin, IGroupEnumerationPlugin, \
@@ -93,3 +93,4 @@ classImplements(PloneLDAPMultiPlugin
                )
  
 InitializeClass(PloneLDAPMultiPlugin)
+

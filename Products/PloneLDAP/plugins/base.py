@@ -1,5 +1,6 @@
 import logging
 import sys
+from Globals import InitializeClass
 from Acquisition import aq_base
 from AccessControl import ClassSecurityInfo
 from Products.PluggableAuthService.utils import classImplements, createViewName
@@ -340,3 +341,4 @@ classImplements( PloneLDAPPluginBaseMixin
                , IGroupManagement
                , IGroupCapability
                )
+InitializeClass(PloneLDAPPluginBaseMixin)
