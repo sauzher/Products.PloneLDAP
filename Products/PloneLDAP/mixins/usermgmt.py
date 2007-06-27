@@ -2,7 +2,9 @@ from Globals import InitializeClass
 from AccessControl import ClassSecurityInfo
 
 class UserManagementMixin:
-    """Implement Products.PlonePAS.interfaces.plugins.IUserManagement
+    """Implement Products.PlonePAS.interfaces.plugins.IUserManagement,
+    Products.PlonePAS.interfaces.plugins.IPasswordSetCapability and
+    Products.PlonePAS.interfaces.plugins.IDeleteCapability.
     """
     security = ClassSecurityInfo()
 
@@ -32,6 +34,17 @@ class UserManagementMixin:
                 user_dn = user.getUserDN()
 
                 acl.manage_deleteUsers(dns=[user_dn])
+
+
+    def allowDeletePrincipal(self, id):
+        """Check if we can remove a user."""
+        return self._getUser(id) is not None
+
+
+    def allowPasswordSet(self, id):
+        """Check if we can set a users password."""
+        return self._getUser(id) is not None
+
 
 InitializeClass(UserManagementMixin)
 

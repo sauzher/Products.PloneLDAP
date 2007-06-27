@@ -23,6 +23,15 @@ logger = logging.getLogger("PloneLDAP")
 class PloneLDAPPluginBaseMixin:
     security = ClassSecurityInfo()
 
+    security.declarePrivate("_getUser")
+    def _getUser(self, uid):
+        """Utility method to get a user by userid."""
+
+        acl = self._getLDAPUserFolder()
+        if acl is not None:
+            return acl.getUserById(uid)
+        return None
+
     
     # The following _ methods gracefuly adapted from PlonePAS.group.GroupManager
     security.declarePrivate('_createGroup')
