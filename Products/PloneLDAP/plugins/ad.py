@@ -2,7 +2,8 @@ import logging
 from zope.interface import implementedBy
 from AccessControl import ClassSecurityInfo
 from Globals import InitializeClass
-from Products.LDAPMultiPlugins.LDAPMultiPlugin import LDAPMultiPlugin
+from Products.LDAPMultiPlugins.ActiveDirectoryMultiPlugin\
+        import ActiveDirectoryMultiPlugin
 from Products.PluggableAuthService.interfaces.plugins import \
      IUserEnumerationPlugin, IGroupsPlugin, IGroupEnumerationPlugin, \
      IRoleEnumerationPlugin, IUserAdderPlugin
@@ -21,14 +22,14 @@ from Products.PloneLDAP.mixins import GroupManagementMixin
 
 logger = logging.getLogger("PloneLDAP")
 
-class PloneLDAPMultiPlugin(PloneLDAPPluginBaseMixin,
+class PloneActiveDirectoryMultiPlugin(PloneLDAPPluginBaseMixin,
         UserAdderMixin, UserManagementMixin, UserPropertiesMixin, 
         GroupCapabilityMixin, GroupIntrospectionMixin, GroupManagementMixin,
-        LDAPMultiPlugin):
-    """Plone LDAP plugin.
+        ActiveDirectoryMultiPlugin):
+    """Plone Active Directory plugin.
     """
     security = ClassSecurityInfo()
-    meta_type = "Plone LDAP plugin"
+    meta_type = "Plone Active Directory plugin"
 
 
     security.declarePrivate('enumerateGroups')
@@ -48,11 +49,11 @@ class PloneLDAPMultiPlugin(PloneLDAPPluginBaseMixin,
         """
         if not id and not kw:
             kw["cn"]=""
-        return LDAPMultiPlugin.enumerateGroups(self, id, exact_match, sort_by,
-                max_results, **kw)
+        return ActiveDirectoryMultiPlugin.enumerateGroups(self, id,
+                exact_match, sort_by, max_results, **kw)
 
 
-classImplements(PloneLDAPMultiPlugin
+classImplements(PloneActiveDirectoryMultiPlugin
                , IUserEnumerationPlugin
                , IGroupsPlugin
                , IUserAdderPlugin
@@ -61,8 +62,8 @@ classImplements(PloneLDAPMultiPlugin
                , IDeleteCapability
                , IPasswordSetCapability
                , IUserManagement
-               , *implementedBy(LDAPMultiPlugin)
+               , *implementedBy(ActiveDirectoryMultiPlugin)
                )
  
-InitializeClass(PloneLDAPMultiPlugin)
+InitializeClass(PloneActiveDirectoryMultiPlugin)
 
