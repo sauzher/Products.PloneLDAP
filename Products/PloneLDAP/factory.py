@@ -2,24 +2,25 @@ from Acquisition import aq_base
 from Products.PageTemplates.PageTemplateFile import PageTemplateFile
 from Products.LDAPUserFolder import manage_addLDAPUserFolder
 from Products.PloneLDAP.plugins.ldap import PloneLDAPMultiPlugin
+from Products.PloneLDAP.plugins.ad import PloneActiveDirectoryMultiPlugin
 
 
 manage_addPloneLDAPMultiPluginForm = PageTemplateFile("www/addLdapPlugin",
                                                         globals())
 
+manage_addPloneActiveDirectoryMultiPluginForm = PageTemplateFile("www/addAdPlugin",
+                                                        globals())
 
-def manage_addPloneLDAPMultiPlugin(self, id, title, LDAP_server, login_attr,
+def genericPluginCreation(self, klass, id, title, LDAP_server, login_attr,
         uid_attr, users_base, users_scope, roles, groups_base, groups_scope,
         binduid, bindpwd, binduid_usage=1, rdn_attr='cn', local_groups=0,
         use_ssl=0, encryption='SHA', read_only=0, REQUEST=None):
-    """Add a Plone LDAP plugin to the site"""
-
     # Make sure we really are working in our container (the 
     # PluggableAuthService object)
     self = self.this()
 
     # First we create the plugin
-    plugin = PloneLDAPMultiPlugin(id, title)
+    plugin = klass(id, title)
     self._setObject(id, plugin)
     plugin = getattr(aq_base(self), id)
 
@@ -47,17 +48,29 @@ def manage_addPloneLDAPMultiPlugin(self, id, title, LDAP_server, login_attr,
             read_only=read_only, obj_classes="pilotPerson,uidObject",
             REQUEST=None)
 
-    luf._ldapschema["cn"]["public_name"]="fullname"
-    luf.manage_addLDAPSchemaItem("mail", "Email Address",
-            public_name="email")
-
-
     # clean out the __allow_groups__ bit because it is not needed here
     # and potentially harmful
     plugin_base = aq_base(plugin)
     if hasattr(plugin_base, '__allow_groups__'):
         del plugin_base.__allow_groups__
 
+    return luf
+
+def manage_addPloneLDAPMultiPlugin(self, id, title, LDAP_server, login_attr,
+        uid_attr, users_base, users_scope, roles, groups_base, groups_scope,
+        binduid, bindpwd, binduid_usage=1, rdn_attr='cn', local_groups=0,
+        use_ssl=0, encryption='SHA', read_only=0, REQUEST=None):
+    """Add a Plone LDAP plugin to the site"""
+
+    luf=genericPluginCreation(self, PloneLDAPMultiPlugin, id, title,
+            LDAP_server, login_attr, uid_attr, users_base, users_scope, roles,
+            groups_base, groups_scope, binduid, bindpwd, binduid_usage=1,
+            rdn_attr='cn', local_groups=0, use_ssl=0, encryption='SHA',
+            read_only=0, REQUEST=None)
+
+    luf._ldapschema["cn"]["public_name"]="fullname"
+    luf.manage_addLDAPSchemaItem("mail", "Email Address",
+            public_name="email")
 
     # Redirect back to the user folder
     if REQUEST is not None:
@@ -65,3 +78,48 @@ def manage_addPloneLDAPMultiPlugin(self, id, title, LDAP_server, login_attr,
                 self.absolute_url())
 
 
+
+
+def manage_addPloneActiveDirectoryMultiPlugin(self, id, title, LDAP_server,
+        login_attr, uid_attr, users_base, users_scope, roles, groups_base,
+        groups_scope, binduid, bindpwd, binduid_usage=1, rdn_attr='cn',
+        local_groups=0, use_ssl=0, encryption='SHA', read_only=0,
+        REQUEST=None):
+    """Add a Plone Active Directory plugin to the site"""
+
+    luf=genericPluginCreation(self, PloneActiveDirectoryMultiPlugin, id, title,
+            LDAP_server, login_attr, uid_attr, users_base, users_scope, roles,
+            groups_base, groups_scope, binduid, bindpwd, binduid_usage=1,
+            rdn_attr='cn', local_groups=0, use_ssl=0, encryption='SHA',
+            read_only=0, REQUEST=None)
+
+    luf._ldapschema =   { 'cn' : { 'ldap_name' : 'cn'
+                                , 'friendly_name' : 'Canonical Name'
+                                , 'multivalued' : ''
+                                , 'public_name' : ''
+                                }
+                       , 'sn' : { 'ldap_name' : 'sn'
+                                , 'friendly_name' : 'Last Name'
+                                , 'multivalued' : ''
+                                , 'public_name' : 'last_name'
+                                }
+                       }
+    luf.manage_addLDAPSchemaItem('dn', 'Distinguished Name',
+                                public_name='dn')
+    luf.manage_addLDAPSchemaItem('sAMAccountName', 'Windows Login Name',
+                                public_name='windows_login_name')
+    luf.manage_addLDAPSchemaItem('objectGUID', 'AD Object GUID',
+                                public_name='objectGUID')
+    luf.manage_addLDAPSchemaItem('givenName', 'First Name',
+                                public_name='first_name')
+    luf.manage_addLDAPSchemaItem('sn', 'Last Name',
+                                public_name='last_name')
+    luf.manage_addLDAPSchemaItem('memberOf',
+                                'Group DNs',
+                                public_name='memberOf',
+                                multivalued=True)
+
+    # Redirect back to the user folder
+    if REQUEST is not None:
+        return REQUEST["RESPONSE"].redirect("%s/manage_workspace?manage_tabs_message=AutoGroup+plugin+added" %
+                self.absolute_url())
