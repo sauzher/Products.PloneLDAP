@@ -48,9 +48,7 @@ class UserPropertiesMixin:
 
         acl._delegate.modify(ldap_user.dn, changes)
 
-    def deleteUser(self, user_id):
-        # XXX PlonePAS also specifies a deleteUser method
-        raise NotImplemented
+    # deleteUser is already part of the UserManagementMixin
 
 
 InitializeClass(UserPropertiesMixin)
