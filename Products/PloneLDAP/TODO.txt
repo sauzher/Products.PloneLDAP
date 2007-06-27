@@ -8,7 +8,7 @@ X updating user properties
 X change/reset password
 X create a user
 X delete a user
-- list group memberships for a user
+X list group memberships for a user
 - add a user to a group
 - remove a user from a group
 X search for users on userid
