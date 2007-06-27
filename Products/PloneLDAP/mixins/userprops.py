@@ -48,7 +48,12 @@ class UserPropertiesMixin:
 
         acl._delegate.modify(ldap_user.dn, changes)
 
-    # deleteUser is already part of the UserManagementMixin
+    def deleteUser(self, id):
+        """ Delete the users properties. """
+        # Since properties are an inherit part of the user herself and at
+        # at least for Plone the user is deleted before the memberdata
+        # we just do nothing here.
+        return
 
 
 InitializeClass(UserPropertiesMixin)

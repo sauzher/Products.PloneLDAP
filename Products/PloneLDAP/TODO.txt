@@ -5,9 +5,9 @@ Features to test
 
 X retrieving user properties
 X updating user properties
-! change/reset password
+X change/reset password
 X create a user
-- delete a user
+X delete a user
 - list group memberships for a user
 - add a user to a group
 - remove a user from a group
