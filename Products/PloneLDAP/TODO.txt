@@ -9,10 +9,10 @@ X change/reset password
 X create a user
 X delete a user
 X list group memberships for a user
-- add a user to a group
-- remove a user from a group
+X add a user to a group
+X remove a user from a group
 X search for users on userid
-- search for users on email address
+X search for users on other properties
 - assign roles to a user
 - remove roles to a user
 
