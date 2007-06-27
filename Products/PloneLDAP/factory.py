@@ -39,12 +39,13 @@ def manage_addPloneLDAPMultiPlugin(self, id, title, LDAP_server, login_attr,
             port = '389'
 
     # Configure the LDAPUserFolder
-    luf.manage_addServer(host, port=port, use_ssl=use_ssl)
+    luf.manage_addServer(host, port=port, use_ssl=use_ssl, op_timeout=10)
     luf.manage_edit(title, login_attr, uid_attr, users_base, users_scope,
             roles, groups_base, groups_scope, binduid, bindpwd,
             binduid_usage=binduid_usage, rdn_attr=rdn_attr,
             local_groups=local_groups, encryption=encryption,
-            read_only=read_only, REQUEST=None)
+            read_only=read_only, obj_classes="pilotPerson,uidObject",
+            REQUEST=None)
 
     # clean out the __allow_groups__ bit because it is not needed here
     # and potentially harmful
