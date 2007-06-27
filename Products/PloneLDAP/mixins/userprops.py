@@ -27,11 +27,7 @@ class UserPropertiesMixin:
         if acl is None:
             return
 
-        unmangled_userid = self._demangle(user.getId())
-        if unmangled_userid is None:
-            return
-
-        ldap_user = acl.getUserById(unmangled_userid)
+        ldap_user = acl.getUserById(user.getId())
 
         if ldap_user is None:
             return
