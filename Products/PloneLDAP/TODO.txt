@@ -13,15 +13,16 @@ X add a user to a group
 X remove a user from a group
 X search for users on userid
 X search for users on other properties
-- assign roles to a user
-- remove roles to a user
+X assign roles to a user
+X remove roles to a user
 
-- search for groups
-- retrieve users in a group
-- add user to a group
-- remove user from a group
-- create a new group
-- remove a group
-- update group properties 
-- assign roles to a group
-- remove roles to a group
+X search for groups by id
+- search for groups by title -> groups properties are not in LDAP
+X retrieve users in a group
+X add user to a group
+X remove user from a group
+X create a new group
+X remove a group
+- update group properties  -> group properties are not in ldap
+X assign roles to a group
+X remove roles to a group
