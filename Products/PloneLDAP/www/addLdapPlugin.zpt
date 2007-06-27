@@ -192,7 +192,7 @@
         </div>
       </td>
       <td align="left" valign="top" colspan="3">
-        <input type="text" name="roles" size="40" value="Anonymous" />
+        <input type="text" name="roles" size="40" value="Anonymous,Member" />
       </td>
     </tr>
   
