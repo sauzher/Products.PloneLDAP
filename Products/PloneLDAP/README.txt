@@ -11,7 +11,9 @@ beyond that are not part of the standard Pluggable Authentication Service.
 
 Requirements
 
- * Plone 2.5
+ * Plone 3.0
+
+ * PlonePAS 3.0
 
  * LDAPUserFolder 2.8
 
