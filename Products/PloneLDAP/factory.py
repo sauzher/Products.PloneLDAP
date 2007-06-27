@@ -47,6 +47,11 @@ def manage_addPloneLDAPMultiPlugin(self, id, title, LDAP_server, login_attr,
             read_only=read_only, obj_classes="pilotPerson,uidObject",
             REQUEST=None)
 
+    luf._ldapschema["cn"]["public_name"]="fullname"
+    luf.manage_addLDAPSchemaItem("mail", "Email Address",
+            public_name="email")
+
+
     # clean out the __allow_groups__ bit because it is not needed here
     # and potentially harmful
     plugin_base = aq_base(plugin)
