@@ -31,6 +31,27 @@ class PloneLDAPMultiPlugin(PloneLDAPPluginBaseMixin,
     meta_type = "Plone LDAP plugin"
 
 
+    security.declarePrivate('enumerateGroups')
+    def enumerateGroups( self
+                       , id=None
+                       , exact_match=False
+                       , sort_by=None
+                       , max_results=None
+                       , **kw
+                       ):
+        """Group enumeration.
+
+        This method adds a workaround to enforce LDAPUserFolder to return a
+        list of all groups. This is desirable for LDAP environments where only
+        a few groups are present. In Plone we know this in advance thanks to
+        the 'many groups' setting.
+        """
+        if not id and not kw:
+            kw["cn"]=""
+        return LDAPMultiPlugin.enumerateGroups(self, id, exact_match, sort_by,
+                max_results, **kw)
+
+
 classImplements(PloneLDAPMultiPlugin
                , IUserEnumerationPlugin
                , IGroupsPlugin
