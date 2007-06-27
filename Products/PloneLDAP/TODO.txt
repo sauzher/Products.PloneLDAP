@@ -3,10 +3,10 @@ Features to test
 
   - = needs to be done, X = tested and working, ! = needs a fix
 
-- retrieving user properties
-- updating user properties
-- change/reset password
-- create a user
+X retrieving user properties
+X updating user properties
+! change/reset password
+X create a user
 - delete a user
 - list group memberships for a user
 - add a user to a group
