@@ -11,7 +11,10 @@ class UserPropertiesMixin:
     security.declarePrivate('getPropertiesForUser')
     def getPropertiesForUser(self, user, request=None):
         """ Fullfill PropertiesPlugin requirements """
-        return LDAPPropertySheet(self.id, user)
+        try:
+            return LDAPPropertySheet(self.id, user)
+        except KeyError:
+            return None
 
 
     security.declarePrivate('setPropertiesForUser')
