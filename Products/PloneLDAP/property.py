@@ -20,7 +20,7 @@ class LDAPPropertySheet(UserPropertySheet):
                         if x['public_name']]
 
         for (ldapname, zopename, type) in self._ldapschema:
-            if ldap_user._properties.has_key(ldapname):
+            if ldap_user._properties.get(ldapname, None) is not None:
                 properties[zopename]=ldap_user._properties[ldapname]
             else:
                 if type=='lines':
