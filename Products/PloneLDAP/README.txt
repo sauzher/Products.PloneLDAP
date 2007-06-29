@@ -11,14 +11,14 @@ beyond that are not part of the standard Pluggable Authentication Service.
 
 Requirements
 
- * Plone 3.0
-
- * PlonePAS 3.0
+ * Plone 2.5 or later
 
  * LDAPUserFolder 2.8
 
  * LDAPMultiPlugins 1.5
 
+PloneLDAP has been developed for Plone 3.0. While it does support Plone 2.5
+it is highly recommended to use Plone 3.0.
 
 Credits
 
