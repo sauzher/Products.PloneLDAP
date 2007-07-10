@@ -11,10 +11,10 @@ manage_addPloneLDAPMultiPluginForm = PageTemplateFile("www/addLdapPlugin",
 manage_addPloneActiveDirectoryMultiPluginForm = PageTemplateFile("www/addAdPlugin",
                                                         globals())
 
-def genericPluginCreation(self, klass, id, title, LDAP_server, login_attr,
-        uid_attr, users_base, users_scope, roles, groups_base, groups_scope,
-        binduid, bindpwd, binduid_usage=1, rdn_attr='cn', local_groups=0,
-        use_ssl=0, encryption='SHA', read_only=0, REQUEST=None):
+def genericPluginCreation(self, klass, id, title, login_attr, uid_attr,
+        users_base, users_scope, roles, groups_base, groups_scope, binduid,
+        bindpwd, binduid_usage=1, rdn_attr='cn', local_groups=0, use_ssl=0,
+        encryption='SHA', read_only=0, LDAP_server=None, REQUEST=None):
     # Make sure we really are working in our container (the 
     # PluggableAuthService object)
     self = self.this()
@@ -29,18 +29,19 @@ def genericPluginCreation(self, klass, id, title, LDAP_server, login_attr,
     luf=getattr(aq_base(plugin), "acl_users")
 
     # Figure out the LDAP port number to use
-    host_elems = LDAP_server.split(':')
-    host = host_elems[0]
-    if len(host_elems) > 1:
-        port = host_elems[1]
-    else:
-        if use_ssl:
-            port = '636'
+    if LDAP_server is not None:
+        host_elems = LDAP_server.split(':')
+        host = host_elems[0]
+        if len(host_elems) > 1:
+            port = host_elems[1]
         else:
-            port = '389'
+            if use_ssl:
+                port = '636'
+            else:
+                port = '389'
+        luf.manage_addServer(host, port=port, use_ssl=use_ssl, op_timeout=10)
 
     # Configure the LDAPUserFolder
-    luf.manage_addServer(host, port=port, use_ssl=use_ssl, op_timeout=10)
     luf.manage_edit(title, login_attr, uid_attr, users_base, users_scope,
             roles, groups_base, groups_scope, binduid, bindpwd,
             binduid_usage=binduid_usage, rdn_attr=rdn_attr,
