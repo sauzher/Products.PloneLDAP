@@ -85,7 +85,7 @@ def manage_addPloneActiveDirectoryMultiPlugin(self, id, title,
         login_attr, uid_attr, users_base, users_scope, roles, groups_base,
         groups_scope, binduid, bindpwd, binduid_usage=1, rdn_attr='cn',
         local_groups=0, use_ssl=0, encryption='SHA', read_only=0,
-        LDAP_server=LDAP_serverm REQUEST=None):
+        LDAP_server=None, REQUEST=None):
     """Add a Plone Active Directory plugin to the site"""
 
     luf=genericPluginCreation(self, PloneActiveDirectoryMultiPlugin, id, title,
