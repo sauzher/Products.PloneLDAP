@@ -64,10 +64,10 @@ def manage_addPloneLDAPMultiPlugin(self, id, title, LDAP_server, login_attr,
     """Add a Plone LDAP plugin to the site"""
 
     luf=genericPluginCreation(self, PloneLDAPMultiPlugin, id, title,
-            LDAP_server, login_attr, uid_attr, users_base, users_scope, roles,
+            login_attr, uid_attr, users_base, users_scope, roles,
             groups_base, groups_scope, binduid, bindpwd, binduid_usage=1,
             rdn_attr='cn', local_groups=0, use_ssl=0, encryption='SHA',
-            read_only=0, REQUEST=None)
+            read_only=0, LDAP_server=LDAP_server, REQUEST=None)
 
     luf._ldapschema["cn"]["public_name"]="fullname"
     luf.manage_addLDAPSchemaItem("mail", "Email Address",
@@ -81,11 +81,11 @@ def manage_addPloneLDAPMultiPlugin(self, id, title, LDAP_server, login_attr,
 
 
 
-def manage_addPloneActiveDirectoryMultiPlugin(self, id, title, LDAP_server,
+def manage_addPloneActiveDirectoryMultiPlugin(self, id, title,
         login_attr, uid_attr, users_base, users_scope, roles, groups_base,
         groups_scope, binduid, bindpwd, binduid_usage=1, rdn_attr='cn',
         local_groups=0, use_ssl=0, encryption='SHA', read_only=0,
-        REQUEST=None):
+        LDAP_server=LDAP_serverm REQUEST=None):
     """Add a Plone Active Directory plugin to the site"""
 
     luf=genericPluginCreation(self, PloneActiveDirectoryMultiPlugin, id, title,
