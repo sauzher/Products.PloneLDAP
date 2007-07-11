@@ -6,25 +6,18 @@ from Products.LDAPMultiPlugins.ActiveDirectoryMultiPlugin\
         import ActiveDirectoryMultiPlugin
 from Products.PluggableAuthService.interfaces.plugins import \
      IUserEnumerationPlugin, IGroupsPlugin, IGroupEnumerationPlugin, \
-     IRoleEnumerationPlugin, IUserAdderPlugin
+     IRoleEnumerationPlugin
 from Products.PluggableAuthService.utils import classImplements
-from Products.PlonePAS.interfaces.capabilities import IDeleteCapability
-from Products.PlonePAS.interfaces.capabilities import IPasswordSetCapability
 from Products.PlonePAS.interfaces.plugins import IUserManagement
 from Products.PloneLDAP.plugins.base import PloneLDAPPluginBaseMixin
-from Products.PloneLDAP.mixins import UserAdderMixin
-from Products.PloneLDAP.mixins import UserManagementMixin
 from Products.PloneLDAP.mixins import UserPropertiesMixin
 
-from Products.PloneLDAP.mixins import GroupCapabilityMixin
 from Products.PloneLDAP.mixins import GroupIntrospectionMixin
-from Products.PloneLDAP.mixins import GroupManagementMixin
 
 logger = logging.getLogger("PloneLDAP")
 
 class PloneActiveDirectoryMultiPlugin(PloneLDAPPluginBaseMixin,
-        UserAdderMixin, UserManagementMixin, UserPropertiesMixin, 
-        GroupCapabilityMixin, GroupIntrospectionMixin, GroupManagementMixin,
+        UserPropertiesMixin, GroupIntrospectionMixin,
         ActiveDirectoryMultiPlugin):
     """Plone Active Directory plugin.
     """
@@ -56,12 +49,8 @@ class PloneActiveDirectoryMultiPlugin(PloneLDAPPluginBaseMixin,
 classImplements(PloneActiveDirectoryMultiPlugin
                , IUserEnumerationPlugin
                , IGroupsPlugin
-               , IUserAdderPlugin
                , IGroupEnumerationPlugin
                , IRoleEnumerationPlugin
-               , IDeleteCapability
-               , IPasswordSetCapability
-               , IUserManagement
                , *implementedBy(ActiveDirectoryMultiPlugin)
                )
  
