@@ -63,11 +63,13 @@ def manage_addPloneLDAPMultiPlugin(self, id, title, LDAP_server, login_attr,
         use_ssl=0, encryption='SHA', read_only=0, REQUEST=None):
     """Add a Plone LDAP plugin to the site"""
 
-    luf=genericPluginCreation(self, PloneLDAPMultiPlugin, id, title,
-            login_attr, uid_attr, users_base, users_scope, roles,
-            groups_base, groups_scope, binduid, bindpwd, binduid_usage=1,
-            rdn_attr='cn', local_groups=0, use_ssl=0, encryption='SHA',
-            read_only=0, LDAP_server=LDAP_server, REQUEST=None)
+    luf=genericPluginCreation(self, PloneLDAPMultiPlugin, id=id, title=title,
+            login_attr=login_attr, uid_attr=uid_attr, users_base=users_base,
+            users_scope=users_scope, roles=roles, groups_base=groups_base,
+            groups_scope=groups_scope, binduid=binduid, bindpwd=bindpwd,
+            binduid_usage=1, rdn_attr='cn', local_groups=0, use_ssl=0,
+            encryption='SHA', read_only=0, LDAP_server=LDAP_server,
+            REQUEST=None)
 
     luf._ldapschema["cn"]["public_name"]="fullname"
     luf.manage_addLDAPSchemaItem("mail", "Email Address",
@@ -88,11 +90,13 @@ def manage_addPloneActiveDirectoryMultiPlugin(self, id, title,
         LDAP_server=None, REQUEST=None):
     """Add a Plone Active Directory plugin to the site"""
 
-    luf=genericPluginCreation(self, PloneActiveDirectoryMultiPlugin, id, title,
-            LDAP_server, login_attr, uid_attr, users_base, users_scope, roles,
-            groups_base, groups_scope, binduid, bindpwd, binduid_usage=1,
-            rdn_attr='cn', local_groups=0, use_ssl=0, encryption='SHA',
-            read_only=0, REQUEST=None)
+    luf=genericPluginCreation(self, klass=PloneActiveDirectoryMultiPlugin,
+            id=id, title=title, login_attr=login_attr, uid_attr=uid_attr,
+            users_base=users_base, users_scope=users_scope, roles=roles,
+            groups_base=groups_base, groups_scope=groups_scope,
+            binduid=binduid, bindpwd=bindpwd, binduid_usage=1, rdn_attr='cn',
+            local_groups=0, use_ssl=0, encryption='SHA', read_only=0,
+            LDAP_server=LDAP_server, REQUEST=None)
 
     luf._ldapschema =   { 'cn' : { 'ldap_name' : 'cn'
                                 , 'friendly_name' : 'Canonical Name'
