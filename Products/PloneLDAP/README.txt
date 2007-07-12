@@ -27,4 +27,9 @@ Credits
 
   Implementation --
     Simplon, Wichert Akkerman
-    
+ 
+Copyright
+
+  PloneLDAP is copyright 2007 by Simplon and licensed under the GNU General
+  Public License, version 2.
+
