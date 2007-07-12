@@ -8,7 +8,6 @@ from Products.PluggableAuthService.interfaces.plugins import \
      IUserEnumerationPlugin, IGroupsPlugin, IGroupEnumerationPlugin, \
      IRoleEnumerationPlugin
 from Products.PluggableAuthService.utils import classImplements
-from Products.PlonePAS.interfaces.plugins import IUserManagement
 from Products.PloneLDAP.plugins.base import PloneLDAPPluginBaseMixin
 from Products.PloneLDAP.mixins import UserPropertiesMixin
 
