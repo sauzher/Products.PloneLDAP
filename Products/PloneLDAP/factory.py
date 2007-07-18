@@ -67,9 +67,9 @@ def manage_addPloneLDAPMultiPlugin(self, id, title, LDAP_server, login_attr,
             login_attr=login_attr, uid_attr=uid_attr, users_base=users_base,
             users_scope=users_scope, roles=roles, groups_base=groups_base,
             groups_scope=groups_scope, binduid=binduid, bindpwd=bindpwd,
-            binduid_usage=1, rdn_attr='cn', local_groups=0, use_ssl=0,
-            encryption='SHA', read_only=0, LDAP_server=LDAP_server,
-            REQUEST=None)
+            binduid_usage=binduid_usage, rdn_attr=rdn_attr,
+            local_groups=local_groups, use_ssl=use_ssl, encryption=encryption,
+            read_only=read_only, LDAP_server=LDAP_server, REQUEST=None)
 
     luf._ldapschema["cn"]["public_name"]="fullname"
     luf.manage_addLDAPSchemaItem("mail", "Email Address",
@@ -94,9 +94,10 @@ def manage_addPloneActiveDirectoryMultiPlugin(self, id, title,
             id=id, title=title, login_attr=login_attr, uid_attr=uid_attr,
             users_base=users_base, users_scope=users_scope, roles=roles,
             groups_base=groups_base, groups_scope=groups_scope,
-            binduid=binduid, bindpwd=bindpwd, binduid_usage=1, rdn_attr='cn',
-            local_groups=0, use_ssl=0, encryption='SHA', read_only=0,
-            LDAP_server=LDAP_server, REQUEST=None)
+            binduid=binduid, bindpwd=bindpwd, binduid_usage=binduid_usage,
+            rdn_attr=rdn_attr, local_groups=local_groups, use_ssl=use_ssl,
+            encryption=encryption, read_only=0, LDAP_server=LDAP_server,
+            REQUEST=None)
 
     luf._ldapschema =   { 'cn' : { 'ldap_name' : 'cn'
                                 , 'friendly_name' : 'Canonical Name'
