@@ -96,8 +96,8 @@ def manage_addPloneActiveDirectoryMultiPlugin(self, id, title,
             groups_base=groups_base, groups_scope=groups_scope,
             binduid=binduid, bindpwd=bindpwd, binduid_usage=binduid_usage,
             rdn_attr=rdn_attr, local_groups=local_groups, use_ssl=use_ssl,
-            encryption=encryption, read_only=0, LDAP_server=LDAP_server,
-            REQUEST=None)
+            encryption=encryption, read_only=read_only,
+            LDAP_server=LDAP_server, REQUEST=None)
 
     luf._ldapschema =   { 'cn' : { 'ldap_name' : 'cn'
                                 , 'friendly_name' : 'Canonical Name'
