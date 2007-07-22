@@ -14,7 +14,8 @@ manage_addPloneActiveDirectoryMultiPluginForm = PageTemplateFile("www/addAdPlugi
 def genericPluginCreation(self, klass, id, title, login_attr, uid_attr,
         users_base, users_scope, roles, groups_base, groups_scope, binduid,
         bindpwd, binduid_usage=1, rdn_attr='cn', local_groups=0, use_ssl=0,
-        encryption='SHA', read_only=0, LDAP_server=None, REQUEST=None):
+        encryption='SHA', read_only=0, LDAP_server=None,
+        obj_classes='pilotPerson,uidObject', REQUEST=None):
     # Make sure we really are working in our container (the 
     # PluggableAuthService object)
     self = self.this()
@@ -46,7 +47,7 @@ def genericPluginCreation(self, klass, id, title, login_attr, uid_attr,
             roles, groups_base, groups_scope, binduid, bindpwd,
             binduid_usage=binduid_usage, rdn_attr=rdn_attr,
             local_groups=local_groups, encryption=encryption,
-            read_only=read_only, obj_classes="pilotPerson,uidObject",
+            read_only=read_only, obj_classes=obj_classes,
             REQUEST=None)
 
     # clean out the __allow_groups__ bit because it is not needed here
