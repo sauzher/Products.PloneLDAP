@@ -7,11 +7,11 @@ from Products.PlonePAS.interfaces.propertysheets import IMutablePropertySheet
 class LDAPPropertySheet(UserPropertySheet):
     def __init__(self, id, user):
         self.id=id
-        self.acl=self._getLDAPUserFolder(user)
 
+        acl = self._getLDAPUserFolder(user)
         self._ldapschema=[(x['ldap_name'], x['public_name'],
                         x['multivalued'] and 'lines' or 'string') \
-                    for x in self.acl.getSchemaConfig().values() \
+                    for x in acl.getSchemaConfig().values() \
                     if x['public_name']]
 
         properties=self._getCache(user)
@@ -25,7 +25,8 @@ class LDAPPropertySheet(UserPropertySheet):
 
 
     def fetchLdapProperties(self, user):
-        ldap_user = self.acl.getUserById(user.getId())
+        acl = self._getLDAPUserFolder(user)
+        ldap_user = acl.getUserById(user.getId())
         properties={}
 
         # Do not pretend to have any properties if the user is not in LDAP
@@ -45,7 +46,8 @@ class LDAPPropertySheet(UserPropertySheet):
 
 
     def canWriteProperty(self, user, id):
-        return not self.acl.read_only
+        acl = self._getLDAPUserFolder(user)
+        return not acl.read_only
 
 
     def setProperty(self, user, id, value):
@@ -53,7 +55,8 @@ class LDAPPropertySheet(UserPropertySheet):
 
 
     def setProperties(self, user, mapping):
-        ldap_user = self.acl.getUserById(user.getId())
+        acl = self._getLDAPUserFolder(user)
+        ldap_user = acl.getUserById(user.getId())
 
         schema=dict([(x[1], (x[0], x[2])) for x in self._ldapschema])
         changes={}
@@ -67,8 +70,8 @@ class LDAPPropertySheet(UserPropertySheet):
                 self._properties[key]=value
                 changes[schema[key][0]]=value
 
-        self.acl._delegate.modify(ldap_user.dn, attrs=changes)
-	self.acl._expireUser(user.getUserName())
+        acl._delegate.modify(ldap_user.dn, attrs=changes)
+	acl._expireUser(user.getUserName())
         self._invalidateCache(user)
 
 
