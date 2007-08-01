@@ -42,6 +42,12 @@ def genericPluginCreation(self, klass, id, title, login_attr, uid_attr,
                 port = '389'
         luf.manage_addServer(host, port=port, use_ssl=use_ssl, op_timeout=10)
 
+    # clean out the __allow_groups__ bit because it is not needed here
+    # and potentially harmful
+    plugin_base = aq_base(plugin)
+    if hasattr(plugin_base, '__allow_groups__'):
+        del plugin_base.__allow_groups__
+
     # Configure the LDAPUserFolder
     luf.manage_edit(title, login_attr, uid_attr, users_base, users_scope,
             roles, groups_base, groups_scope, binduid, bindpwd,
@@ -49,12 +55,6 @@ def genericPluginCreation(self, klass, id, title, login_attr, uid_attr,
             local_groups=local_groups, encryption=encryption,
             read_only=read_only, obj_classes=obj_classes,
             REQUEST=None)
-
-    # clean out the __allow_groups__ bit because it is not needed here
-    # and potentially harmful
-    plugin_base = aq_base(plugin)
-    if hasattr(plugin_base, '__allow_groups__'):
-        del plugin_base.__allow_groups__
 
     return luf
 
