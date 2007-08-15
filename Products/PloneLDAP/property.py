@@ -1,4 +1,3 @@
-from Products.CMFCore.utils import getToolByName
 from Products.PluggableAuthService.utils import classImplements
 from Products.PluggableAuthService.UserPropertySheet import UserPropertySheet
 from Products.PlonePAS.interfaces.propertysheets import IMutablePropertySheet
@@ -77,12 +76,11 @@ class LDAPPropertySheet(UserPropertySheet):
 
     def _getLDAPUserFolder(self, user):
         """ Safely retrieve a (LDAP)UserFolder to work with """
-        portal=getToolByName(user.acl_users, 'portal_url').getPortalObject()
-        return portal.acl_users._getOb(self.id).acl_users
+        return user.acl_users._getOb(self.id).acl_users
 
 
     def getLDAPMultiPlugin(self, user):
-        return self._getLDAPUserFolder(user).aq_parent
+        return user.acl_users._getOb(self.id)
 
 
     def _getUserPropertyCacheKey(self, user):
