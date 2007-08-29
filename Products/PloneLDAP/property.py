@@ -1,3 +1,4 @@
+from Acquisition import aq_inner
 from Products.PluggableAuthService.utils import classImplements
 from Products.PluggableAuthService.UserPropertySheet import UserPropertySheet
 from Products.PlonePAS.interfaces.propertysheets import IMutablePropertySheet
@@ -76,11 +77,11 @@ class LDAPPropertySheet(UserPropertySheet):
 
     def _getLDAPUserFolder(self, user):
         """ Safely retrieve a (LDAP)UserFolder to work with """
-        return user.acl_users._getOb(self.id).acl_users
+        return getattr(user.acl_users, self.id)._getLDAPUserFolder()
 
 
     def getLDAPMultiPlugin(self, user):
-        return user.acl_users._getOb(self.id)
+        return aq_inner(getattr(user.acl_users, self.id))
 
 
     def _getUserPropertyCacheKey(self, user):
