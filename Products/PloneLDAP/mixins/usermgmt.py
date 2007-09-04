@@ -35,6 +35,9 @@ class UserManagementMixin:
 
                 acl.manage_deleteUsers(dns=[user_dn])
 
+                view_name = self.getId() + '_enumerateUsers'
+                self.ZCacheable_invalidate(view_name = view_name,)
+
 
     def allowDeletePrincipal(self, id):
         """Check if we can remove a user."""

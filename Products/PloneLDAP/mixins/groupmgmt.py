@@ -34,6 +34,9 @@ class GroupManagementMixin:
                 current_groups.append(newGroupDN)
 
             self.acl_users.manage_editUserRoles(userDN, current_groups)
+            
+            view_name = self.getId() + '_getGroupsForPrincipal'
+            self.ZCacheable_invalidate(view_name = view_name)
             return True
         else:
             return False
@@ -74,6 +77,9 @@ class GroupManagementMixin:
 
             if len(new_groups) != len(current_groups):
                 self.acl_users.manage_editUserRoles(userDN, new_groups)
+
+            view_name = self.getId() + '_getGroupsForPrincipal'
+            self.ZCacheable_invalidate(view_name = view_name)
 
             return True
         
