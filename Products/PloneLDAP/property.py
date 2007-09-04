@@ -65,10 +65,11 @@ class LDAPPropertySheet(UserPropertySheet):
             if key in schema and self._properties[key]!=value:
                 if schema[key][1]=="lines":
                     value=[x.strip() for x in value]
+                    changes[schema[key][0]]=value
                 else:
-                    value=[value.strip()]
+                    value=value.strip()
+                    changes[schema[key][0]]=[value]
                 self._properties[key]=value
-                changes[schema[key][0]]=value
 
         acl._delegate.modify(ldap_user.dn, attrs=changes)
 	acl._expireUser(user.getUserName())
