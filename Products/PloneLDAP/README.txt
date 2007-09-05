@@ -41,6 +41,21 @@ After selecting the plugin type you will see a screen where you need to
 submit the configuration information. Consult your LDAP or AD administrator
 if you are not sure what the correct information is.
 
+After creating the plugin it has to be activated. To do this go to the
+plugin in the ZMI and go to the 'navigate' tab, select all plugin types
+and click on the 'Update' button.
+
+As a final change you will need to reorder the plugin order. Reodering
+can be done by clicking on the name of a plugin type, selecting a plugin
+in the 'Active Plugins' list and using the up and down arrows to change
+the ordering. The required ordering changes are:
+
+* Properties: LDAP has to be the top plugin
+* Group_Management: LDAP should be the top plugin if you want to
+  create groups in the LDAP database
+* User_Adder: has to be the top plugin if you want new users to be
+  created in LDAP
+* User_Management: LDAP has to be the top plugin
 
 
 Credits
