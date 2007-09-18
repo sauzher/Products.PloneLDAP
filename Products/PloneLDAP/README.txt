@@ -1,3 +1,5 @@
+Introduction
+============
 The PloneLDAP product is intended to make it easier to use LDAP connections in
 a Plone website. It builds upon the excellent LDAPMultiPlugins_ and
 "LDAPUserFolder_ products which provide the basic LDAP infrastructure. 
@@ -8,6 +10,21 @@ which is why they are not included in LDAPMultiPlugins.
 
 .. _LDAPMultiPlugins: http://www.dataflake.org/software/ldapmultiplugins
 .. _LDAPUserFolder: http://www.dataflake.org/software/ldapuserfolder
+
+PloneLDAP integrates LDAP fully into your Plone site:
+
+* users in an LDAP database can be used as normal users in Plone. You
+  can search for them, assign roles to them, create them and remove them.
+
+* groups in an LDAP database can be used as normal groups in Plone. You
+  can view them, manage group members, create new groups and remove them.
+  LDAP groups can only have LDAP users as members. LDAP users can be
+  group members of non-LDAP groups.
+
+* member properties for LDAP users need not be stored completely in the
+  LDAP database: you can mix LDAP and ZODB-stored properties.
+
+Please note that if you are using Active Directory all access is read-only.
 
 
 Requirements
@@ -56,6 +73,27 @@ the ordering. The required ordering changes are:
 * User_Adder: has to be the top plugin if you want new users to be
   created in LDAP
 * User_Management: LDAP has to be the top plugin
+
+
+LDAP caveats
+============
+
+LDAPUserFolder
+~~~~~~~~~~~~~~
+Inside the PloneLDAP PAS plugin you will see another acl_users user folder.
+This is a ''LDAPUserFolder'' instance, which is used to manage the low-level
+communication with the LDAP server. By updating its properties you can
+reconfigure your LDAP connection.
+
+The LDAPUserFolder instance is only used to communicate with the LDAP server.
+Its user and group management facilities are not used. You can use it to
+quickly test if your LDAP connection is correctly configured.
+
+If you make any changes in users or groups through the LDAPUserFolder ZMI
+interfaces these will be applied to the LDAP server but the caches used
+by the PloneLDAP plugin will not be invalidated correctly. This may lead
+to unexpected results and it is strongly recommended to only use the Plone
+interface to update users and groups.
 
 
 Credits
