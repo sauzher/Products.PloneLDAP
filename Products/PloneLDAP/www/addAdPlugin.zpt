@@ -42,7 +42,12 @@
                value="my.ldap.server" />
       </td>
       <td align="left" valign="top"><div class="form-label">
-        Use SSL&nbsp;<input type="checkbox" name="use_ssl" />
+        Use SSL&nbsp;
+        <select name="use_ssl:int">
+          <option value="0" selected=""> LDAP </option>
+          <option value="1"> LDAP over SSL </option>
+          <option value="2"> LDAP over IPC </option>
+        </select>
         </div>
       </td>
       <td align="left" valign="top"><div class="form-label">
