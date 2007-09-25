@@ -4,7 +4,7 @@ version = '1.0'
 
 setup(name='Products.PloneLDAP',
       version=version,
-      description="LDAP/AD support for Plone",
+      description="LDAP/Active Directory support for Plone",
       long_description=open('Products/PloneLDAP/README.txt').read() +
                       open('Products/PloneLDAP/CHANGES.txt').read(),
       classifiers=[
