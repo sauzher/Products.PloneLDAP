@@ -20,13 +20,13 @@ class GroupIntrospectionMixin:
 
     security.declarePrivate('getGroups')
     def getGroups(self):
-        groups = [self.getGroupById(x['id']) for x in self.enumerateGroups()]
+        groups = [self.getGroupById(x['id']) for x in self.enumerateGroups() if x]
         return groups
 
 
     security.declarePrivate('getGroupIds')
     def getGroupIds(self):
-        groupIds = [x['id'] for x in self.enumerateGroups()]
+        groupIds = [x['id'] for x in self.enumerateGroups() if x]
         return tuple(groupIds)
 
     security.declarePrivate('getGroupMembers')
@@ -34,7 +34,7 @@ class GroupIntrospectionMixin:
         groups = ((group_id, None),)
         members = self.acl_users.getGroupedUsers(groups)
         
-        usernames = [x.getUserName() for x in members]
+        usernames = [x.getUserName() for x in members if x]
         
         return usernames
 
