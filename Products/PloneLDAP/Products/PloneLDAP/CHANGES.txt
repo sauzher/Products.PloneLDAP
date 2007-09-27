@@ -1,6 +1,12 @@
 Changes
 =======
 
+1.0
+~~~
+
+* Fix incorrect security declaration for doDeleteUser
+
+
 1.0rc3
 ~~~~~~
 
