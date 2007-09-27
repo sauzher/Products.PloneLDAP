@@ -22,7 +22,7 @@ class UserManagementMixin:
                 acl.manage_editUserPassword(user_dn, password)
 
 
-    security.declarePrivate('doAddUser')
+    security.declarePrivate('doDeleteUser')
     def doDeleteUser(self , login):
         """ Remove a user record from a User Manager. """
         acl = self._getLDAPUserFolder()
