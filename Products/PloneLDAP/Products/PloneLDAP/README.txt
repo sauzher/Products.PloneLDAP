@@ -45,7 +45,11 @@ Installation
 ============
 
 First you need to install the python-ldap package and the LDAPUserFolder,
-LDAPMultiPlugins and PloneLDAP products.
+LDAPMultiPlugins and PloneLDAP products in the Products folder of your
+Zope instance.
+
+  **Do not install LDAPUserFolder from the Plone site setup screen. This
+  will break your Plone site.**
 
 PloneLDAP provides PAS plugins that you can use to get your site talking to
 LDAP or Active Directory. To install them go the acl_users folder in your
