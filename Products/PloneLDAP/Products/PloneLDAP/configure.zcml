@@ -1,6 +1,9 @@
-<configure xmlns="http://namespaces.zope.org/zope">
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:zcml="http://namespaces.zope.org/zcml">
 
-  <utility factory=".products.HiddenLDAPProducts"
-             name="Products.PloneLDAP" />
+  <utility
+      zcml:condition="installed Products.CMFQuickInstallerTool.interfaces.INonInstallable"
+      factory=".products.HiddenLDAPProducts"
+      name="Products.PloneLDAP" />
 
 </configure>
