@@ -4,6 +4,9 @@ Changes
 1.0
 ~~~
 
+* Hide LDAPUserFolder from the list of Add-On Products since installing it
+  will kill your Plone site. Plone 3.0 only.
+
 * Fix incorrect security declaration for doDeleteUser
 
 
