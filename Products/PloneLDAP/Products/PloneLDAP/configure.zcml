@@ -1,0 +1,6 @@
+<configure xmlns="http://namespaces.zope.org/zope">
+
+  <utility factory=".products.HiddenLDAPProducts"
+             name="Products.PloneLDAP" />
+
+</configure>
