@@ -10,8 +10,11 @@ from Products.PloneLDAP.factory  \
 from Products.PloneLDAP.factory \
         import manage_addPloneActiveDirectoryMultiPlugin
 
+import Products.PloneLDAP.patches
+
 registerMultiPlugin(PloneLDAPMultiPlugin.meta_type)
 registerMultiPlugin(PloneActiveDirectoryMultiPlugin.meta_type)
+
 
 def initialize(context):
 
