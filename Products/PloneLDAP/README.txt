@@ -117,6 +117,6 @@ Implementation
 Copyright
 =========
 
-PloneLDAP is copyright 2007 by Simplon_ and licensed under the GNU General
-Public License, version 2.
+PloneLDAP is copyright 2007 by Simplon_ and licensed under the Zope
+Public License, version 2.1.
 
