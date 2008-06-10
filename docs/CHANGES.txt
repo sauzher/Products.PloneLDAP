@@ -8,6 +8,8 @@ Changes
 
 * Depend on the Products.LDAPMultiPlugins and Products.LDAPUserFolder.
 
+* Switch to egg-only releases from now on.
+
 1.0
 ~~~
 

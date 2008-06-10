@@ -30,23 +30,24 @@ Please note that if you are using Active Directory all access is read-only.
 Requirements
 ============
 
-* Plone 2.5 or later
+* Plone 3.0 or later
 * python-ldap_
 * LDAPUserFolder 2.8
 * LDAPMultiPlugins 1.5
 
 .. _python-ldap: http://python-ldap.sourceforge.net/
 
-PloneLDAP has been developed for Plone 3.0. While it does support Plone 2.5
-it is highly recommended to use Plone 3.0.
-
+Products.PloneLDAP depends on LDAPMultiPlugins and LDAPUserFolder, so they
+will be installed automatically.
 
 Installation
 ============
 
-First you need to install the python-ldap package and the LDAPUserFolder,
-LDAPMultiPlugins and PloneLDAP products in the Products folder of your
-Zope instance.
+First you need to install the python-ldap package. Once that has been
+installed you need to add the Products.PloneLDAP egg to your Plone instance.
+If you use buildout just add ``Products.PloneLDAP`` to the list of required
+eggs. Otherwise you will need to use ``easy_install``_. See the documentation
+on plone.org for more information on installing third party packages.
 
   **Do not install LDAPUserFolder from the Plone site setup screen. This
   will break your Plone site.**
@@ -117,6 +118,6 @@ Implementation
 Copyright
 =========
 
-PloneLDAP is copyright 2007 by Simplon_ and licensed under the Zope
+PloneLDAP is copyright 2007,2008 by Simplon_ and licensed under the Zope
 Public License, version 2.1.
 

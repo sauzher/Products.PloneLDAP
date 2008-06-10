@@ -1,12 +1,13 @@
 from setuptools import setup, find_packages
+import os.path
 
 version = '1.0'
 
 setup(name='Products.PloneLDAP',
       version=version,
       description="LDAP/Active Directory support for Plone",
-      long_description=open('Products/PloneLDAP/README.txt').read() +
-                      open('Products/PloneLDAP/CHANGES.txt').read(),
+      long_description=open('README.txt').read() +
+                      open(os.path.join('docs', 'CHANGES.txt')).read(),
       classifiers=[
         "Framework :: Plone",
         "Framework :: Zope2",
@@ -30,3 +31,4 @@ setup(name='Products.PloneLDAP',
         'Products.LDAPUserFolder',
       ],
 )
+
