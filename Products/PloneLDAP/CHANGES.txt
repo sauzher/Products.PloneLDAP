@@ -1,6 +1,13 @@
 Changes
 =======
 
+1.1
+---
+
+* Switch license to ZPL.
+
+* Depend on the Products.LDAPMultiPlugins and Products.LDAPUserFolder.
+
 1.0
 ~~~
 
