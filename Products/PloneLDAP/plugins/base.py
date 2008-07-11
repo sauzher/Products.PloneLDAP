@@ -148,8 +148,9 @@ class PloneLDAPPluginBaseMixin:
                         return id
 
                 except _SWALLOWABLE_PLUGIN_EXCEPTIONS:
-                    logger.info('PluggableAuthService: GroupEnumerationPlugin %s error' %
-                            enumerator_id, error=sys.exc_info())
+                    logger.exception(
+                        'PluggableAuthService: GroupEnumerationPlugin '
+                        '%s error', enumerator_id)
 
         return 0
     
