@@ -64,6 +64,8 @@ class LDAPPropertySheet(UserPropertySheet):
         for (key,value) in mapping.items():
             if key in schema and self._properties[key]!=value:
                 if schema[key][1]=="lines":
+                    if isinstance(value, basestring):
+                        value=value.splitlines()
                     value=[x.strip() for x in value]
                     changes[schema[key][0]]=value
                 else:

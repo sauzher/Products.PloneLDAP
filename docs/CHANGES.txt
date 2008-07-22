@@ -4,7 +4,8 @@ Changes
 1.2
 ---
 
-* ??
+* Fix setProperties to split value into lines if lines property
+  receives a string instead of an iterable.
 
 
 1.1
