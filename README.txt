@@ -2,7 +2,7 @@ Introduction
 ============
 The PloneLDAP product is intended to make it easier to use LDAP connections in
 a Plone website. It builds upon the excellent LDAPMultiPlugins_ and
-"LDAPUserFolder_ products which provide the basic LDAP infrastructure. 
+LDAPUserFolder_ products which provide the basic LDAP infrastructure. 
 
 The extra functionality provided by this product require features
 beyond that are not part of the standard Pluggable Authentication Service,
@@ -46,7 +46,7 @@ Installation
 First you need to install the python-ldap package. Once that has been
 installed you need to add the Products.PloneLDAP egg to your Plone instance.
 If you use buildout just add ``Products.PloneLDAP`` to the list of required
-eggs. Otherwise you will need to use ``easy_install``_. See the documentation
+eggs. Otherwise you will need to use ``easy_install``. See the documentation
 on plone.org for more information on installing third party packages.
 
   **Do not install LDAPUserFolder from the Plone site setup screen. This
@@ -84,7 +84,7 @@ LDAP caveats
 ============
 
 LDAPUserFolder
-~~~~~~~~~~~~~~
+--------------
 Inside the PloneLDAP PAS plugin you will see another acl_users user folder.
 This is a ''LDAPUserFolder'' instance, which is used to manage the low-level
 communication with the LDAP server. By updating its properties you can

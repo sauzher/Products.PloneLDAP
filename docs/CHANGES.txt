@@ -18,7 +18,7 @@ Changes
 * Switch to egg-only releases from now on.
 
 1.0
-~~~
+---
 
 * Hide LDAPUserFolder from the list of Add-On Products since installing it
   will kill your Plone site. Plone 3.0 only.
@@ -27,7 +27,7 @@ Changes
 
 
 1.0rc3
-~~~~~~
+------
 
 * Fix getGroupMembers to return user ids instead of login names for group
   members. This broke group membership listing in environments where userid
@@ -41,7 +41,7 @@ Changes
 
 
 1.0rc2
-~~~~~~
+------
 
 * Improve the documentation.
 
@@ -54,7 +54,7 @@ Changes
 
 
 1.0rc1
-~~~~~~
+------
 
 * Fix setting of object classes when creating a new plugin instance.
 
