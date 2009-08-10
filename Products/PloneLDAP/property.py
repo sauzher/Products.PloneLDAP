@@ -2,6 +2,7 @@ from Acquisition import aq_inner
 from Products.PluggableAuthService.utils import classImplements
 from Products.PluggableAuthService.UserPropertySheet import UserPropertySheet
 from Products.PlonePAS.interfaces.propertysheets import IMutablePropertySheet
+from Products.CMFPlone.utils import safe_unicode
 
 
 class LDAPPropertySheet(UserPropertySheet):
@@ -62,6 +63,10 @@ class LDAPPropertySheet(UserPropertySheet):
         changes={}
 
         for (key,value) in mapping.items():
+            #the value in the mapping is an utf-8 encoded byte string, while self._properties
+            #stores unicode object. this is NOT the same as of python 2.x, python 3 will handle
+            #that differently
+            value=safe_unicode(value)
             if key in schema and self._properties[key]!=value:
                 if schema[key][1]=="lines":
                     if isinstance(value, basestring):
