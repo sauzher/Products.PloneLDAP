@@ -125,6 +125,18 @@ def manage_addPloneActiveDirectoryMultiPlugin(self, id, title,
                                 'Group DNs',
                                 public_name='memberOf',
                                 multivalued=True)
+    filters = [ ]
+    # Ignore disabled accounts. This prevents disabled accounts from showing
+    # up in user searches (ACCOUNTDISABLE flag).
+    filters.append("(!(userAccountControl:1.2.840.113556.1.4.803:=2))")
+    # Only accept normal accounts, not computer/workstation trust accounts
+    # or temporary duplicate (local user) accounts (NORMAL_ACCOUNT flag).
+    filters.append("(userAccountControl:1.2.840.113556.1.4.803:=512)")
+    # Ignore accounts which do not require a password. These accounts are
+    # used by services such as IIS (PASSWD_NOTREQD flag)
+    filters.append("(!(userAccountControl:1.2.840.113556.1.4.803:=32))")
+
+    luf._extra_user_filer = "(&%s)" % "".join(filters)
 
     # Redirect back to the user folder
     if REQUEST is not None:

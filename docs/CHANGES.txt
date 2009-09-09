@@ -1,11 +1,15 @@
 Changes
 =======
 
-1.2
+1.2 (unreleased)
 ---
 
 * Fix setProperties to split value into lines if lines property
   receives a string instead of an iterable.
+
+* When creating an Active Directory plugin configure LDAPUserFolder
+  to ignore disabled or non-user accounts. This requires 
+  Products.LDAPUserFolder 2.11 or later.
 
 
 1.1
