@@ -79,7 +79,7 @@ class LDAPPropertySheet(UserPropertySheet):
                 self._properties[key]=value
 
         acl._delegate.modify(ldap_user.dn, attrs=changes)
-	acl._expireUser(user.getUserName())
+        acl._expireUser(user.getUserName())
         self._invalidateCache(user)
 
 
