@@ -2,7 +2,7 @@ from Acquisition import aq_inner
 from Products.PluggableAuthService.utils import classImplements
 from Products.PluggableAuthService.UserPropertySheet import UserPropertySheet
 from Products.PlonePAS.interfaces.propertysheets import IMutablePropertySheet
-from Products.CMFPlone.utils import safe_unicode
+from Products.PloneLDAP._utils import safe_unicode
 
 
 class LDAPPropertySheet(UserPropertySheet):
