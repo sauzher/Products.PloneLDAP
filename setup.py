@@ -27,6 +27,7 @@ setup(name='Products.PloneLDAP',
       zip_safe=False,
       install_requires=[
         'setuptools',
+        'Plone',
         'Products.LDAPMultiPlugins',
         'Products.LDAPUserFolder',
       ],
