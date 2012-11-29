@@ -16,7 +16,7 @@ class UserManagementMixin:
 
         if acl is not None:
             user = acl.getUser(login)
-            
+
             if user is not None:
                 user_dn = user.getUserDN()
                 acl.manage_editUserPassword(user_dn, password)

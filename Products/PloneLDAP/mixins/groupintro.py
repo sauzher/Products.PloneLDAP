@@ -33,9 +33,9 @@ class GroupIntrospectionMixin:
     def getGroupMembers(self, group_id):
         groups = ((group_id, None),)
         members = self.acl_users.getGroupedUsers(groups)
-        
+
         usernames = [x.getId() for x in members if x]
-        
+
         return usernames
 
 

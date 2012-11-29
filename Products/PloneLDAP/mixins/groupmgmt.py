@@ -34,7 +34,7 @@ class GroupManagementMixin:
                 current_groups.append(newGroupDN)
 
             self.acl_users.manage_editUserRoles(userDN, current_groups)
-            
+
             view_name = self.getId() + '_getGroupsForPrincipal'
             self.ZCacheable_invalidate(view_name = view_name)
             return True
@@ -82,7 +82,7 @@ class GroupManagementMixin:
             self.ZCacheable_invalidate(view_name = view_name)
 
             return True
-        
+
         return False
 
 InitializeClass(GroupManagementMixin)

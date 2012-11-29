@@ -95,7 +95,7 @@ class LDAPPropertySheet(UserPropertySheet):
     def _getUserPropertyCacheKey(self, user):
         """_getUserPropertyCacheKey(id) -> (view_name, keywords)
 
-        given user id, return view_name and keywords to be used when 
+        given user id, return view_name and keywords to be used when
         querying and storing into the user property cache
         """
         view_name = self.id + '__UserPropertyCache'

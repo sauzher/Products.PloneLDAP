@@ -32,7 +32,7 @@ class PloneLDAPPluginBaseMixin:
             return acl.getUserById(uid)
         return None
 
-    
+
     # The following _ methods gracefuly adapted from PlonePAS.group.GroupManager
     security.declarePrivate('_createGroup')
     def _createGroup(self, plugins, group_id, name):
@@ -52,7 +52,7 @@ class PloneLDAPPluginBaseMixin:
         #        return user.__of__(self)
 
         return PloneGroup(group_id, name).__of__(self)
-        
+
 
     security.declarePrivate('_findGroup')
     def _findGroup(self, plugins, group_id, title=None, request=None):
@@ -153,8 +153,8 @@ class PloneLDAPPluginBaseMixin:
                         '%s error', enumerator_id)
 
         return 0
-    
-    
+
+
 classImplements( PloneLDAPPluginBaseMixin
                , IAuthenticationPlugin
                , ICredentialsResetPlugin

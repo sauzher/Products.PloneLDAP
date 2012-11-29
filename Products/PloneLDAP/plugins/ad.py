@@ -52,6 +52,6 @@ classImplements(PloneActiveDirectoryMultiPlugin
                , IRoleEnumerationPlugin
                , *implementedBy(ActiveDirectoryMultiPlugin)
                )
- 
+
 InitializeClass(PloneActiveDirectoryMultiPlugin)
 

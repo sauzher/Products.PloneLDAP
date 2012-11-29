@@ -16,7 +16,7 @@ def genericPluginCreation(self, klass, id, title, login_attr, uid_attr,
         bindpwd, binduid_usage=1, rdn_attr='cn', local_groups=0, use_ssl=0,
         encryption='SHA', read_only=0, LDAP_server=None,
         obj_classes='pilotPerson,uidObject', REQUEST=None):
-    # Make sure we really are working in our container (the 
+    # Make sure we really are working in our container (the
     # PluggableAuthService object)
     self = self.this()
 

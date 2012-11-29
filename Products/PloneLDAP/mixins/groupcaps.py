@@ -14,7 +14,7 @@ class GroupCapabilityMixin:
 
         if group_id and user:
             return True
-        
+
         return False
 
     def allowGroupRemove(self, principal_id, group_id):

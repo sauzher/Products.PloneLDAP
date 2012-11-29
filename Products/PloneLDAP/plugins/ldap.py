@@ -22,7 +22,7 @@ from Products.PloneLDAP.mixins import GroupManagementMixin
 logger = logging.getLogger("PloneLDAP")
 
 class PloneLDAPMultiPlugin(PloneLDAPPluginBaseMixin,
-        UserAdderMixin, UserManagementMixin, UserPropertiesMixin, 
+        UserAdderMixin, UserManagementMixin, UserPropertiesMixin,
         GroupCapabilityMixin, GroupIntrospectionMixin, GroupManagementMixin,
         LDAPMultiPlugin):
     """Plone LDAP plugin.
@@ -63,6 +63,6 @@ classImplements(PloneLDAPMultiPlugin
                , IUserManagement
                , *implementedBy(LDAPMultiPlugin)
                )
- 
+
 InitializeClass(PloneLDAPMultiPlugin)
 

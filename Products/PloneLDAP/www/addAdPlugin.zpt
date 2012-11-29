@@ -21,7 +21,7 @@
         <input type="text" name="id" size="40" />
       </td>
     </tr>
-  
+
     <tr>
       <td align="left" valign="top"><div class="form-optional">
         Title
@@ -31,14 +31,14 @@
         <input type="text" name="title" size="40" />
       </td>
     </tr>
-  
+
     <tr>
       <td align="left" valign="top"><div class="form-label">
         LDAP Server[:port]
         </div>
       </td>
       <td align="left" valign="top">
-        <input type="text" name="LDAP_server" size="40" 
+        <input type="text" name="LDAP_server" size="40"
                value="my.ldap.server" />
       </td>
       <td align="left" valign="top"><div class="form-label">
@@ -55,7 +55,7 @@
         </div>
       </td>
     </tr>
-  
+
     <tr>
       <td align="left" valign="top"><div class="form-label">
         Login Name Attribute
@@ -87,7 +87,7 @@
         </select>
       </td>
     </tr>
-  
+
     <tr>
       <td align="left" valign="top"><div class="form-label">
         RDN Attribute
@@ -99,7 +99,7 @@
         </select>
       </td>
     </tr>
-  
+
     <tr>
       <td align="left" valign="top"><div class="form-label">
         Users Base DN
@@ -121,7 +121,7 @@
         </select>
       </td>
     </tr>
-  
+
     <tr>
       <td align="left" valign="top"><div class="form-label">
         Group storage
@@ -138,14 +138,14 @@
         </select>
       </td>
     </tr>
-  
+
     <tr>
       <td align="left" valign="top"><div class="form-label">
         Groups Base DN
         </div>
       </td>
       <td align="left" valign="top">
-        <input type="text" name="groups_base" size="40" 
+        <input type="text" name="groups_base" size="40"
                value="ou=groups,o=Organization,c=US" />
       </td>
       <td align="left" valign="top"><div class="form-label">
@@ -159,7 +159,7 @@
           <option value="2" selected> SUBTREE </option>
         </select></td>
     </tr>
-  
+
     <tr>
       <td align="left" valign="top"><div class="form-optional">
         Manager DN
@@ -176,7 +176,7 @@
         <input type="password" name="bindpwd:string" size="13" />
       </td>
     </tr>
-  
+
     <tr>
       <td align="left" valign="top"><div class="form-label">
         User password encryption
@@ -191,7 +191,7 @@
         </select>
       </td>
     </tr>
-  
+
     <tr>
       <td align="left" valign="top"><div class="form-label">
         Default User Roles
@@ -201,7 +201,7 @@
         <input type="text" name="roles" size="40" value="Anonymous,Member" />
       </td>
     </tr>
-  
+
     <tr>
       <td>&nbsp;</td>
       <td colspan="3">
@@ -209,7 +209,7 @@
         <input type="submit" value=" Add ">
       </td>
     </tr>
-  
+
   </table>
 </form>
 
