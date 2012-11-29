@@ -1,16 +1,15 @@
 from Globals import InitializeClass
 from AccessControl import ClassSecurityInfo
 
+
 class GroupManagementMixin:
     """Implement Products.PlonePAS.interfaces.group.IGroupManagement
     """
     security = ClassSecurityInfo()
 
-
     security.declarePrivate('addGroup')
     def addGroup(self, id, **kw):
         self.acl_users.manage_addGroup(id)
-
 
     security.declarePrivate('addPrincipalToGroup')
     def addPrincipalToGroup(self, principal_id, group_id):
@@ -45,20 +44,15 @@ class GroupManagementMixin:
     def updateGroup(self, id, **kw):
         raise NotImplementedError()
 
-
     security.declarePrivate('setRolesForGroup')
     def setRolesForGroup(self, group_id, roles=()):
         raise NotImplementedError()
 
-
     security.declarePrivate('removeGroup')
     def removeGroup(self, group_id):
-        plugins = self._getPAS()._getOb('plugins')
-
-        groups=self.enumerateGroups(id=group_id, exact_match=True)
+        groups = self.enumerateGroups(id=group_id, exact_match=True)
         if groups:
             self.acl_users.manage_deleteGroups([info["dn"] for info in groups])
-
 
     security.declarePrivate('removePrincipalFromGroup')
     def removePrincipalFromGroup(self, principal_id, group_id):
@@ -73,7 +67,7 @@ class GroupManagementMixin:
             all_groups = dict(self.acl_users.getGroups())
             group_dn = all_groups[group_id]
 
-            new_groups = [ g for g in current_groups if g!=group_dn ]
+            new_groups = [g for g in current_groups if g!=group_dn]
 
             if len(new_groups) != len(current_groups):
                 self.acl_users.manage_editUserRoles(userDN, new_groups)
@@ -86,4 +80,3 @@ class GroupManagementMixin:
         return False
 
 InitializeClass(GroupManagementMixin)
-

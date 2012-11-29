@@ -2,6 +2,7 @@
 # which is a plain copy of it, as of 2010-07-21
 try:
     from Products.CMFPlone.utils import safe_unicode
+    safe_unicode  # pyflakes
 except ImportError:
     def safe_unicode(value, encoding='utf-8'):
         """Converts a value to unicode, even it is already a unicode string.

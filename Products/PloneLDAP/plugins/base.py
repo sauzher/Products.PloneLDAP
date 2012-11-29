@@ -1,5 +1,4 @@
 import logging
-import sys
 from Globals import InitializeClass
 from Acquisition import aq_base
 from AccessControl import ClassSecurityInfo
@@ -8,11 +7,11 @@ from Products.PluggableAuthService.PluggableAuthService import \
         _SWALLOWABLE_PLUGIN_EXCEPTIONS
 
 from Products.PluggableAuthService.interfaces.plugins import \
-     IAuthenticationPlugin, IRolesPlugin, \
-     ICredentialsResetPlugin, IPropertiesPlugin, IGroupEnumerationPlugin
+    IAuthenticationPlugin, IRolesPlugin, \
+    ICredentialsResetPlugin, IPropertiesPlugin, IGroupEnumerationPlugin
 
 from Products.PlonePAS.interfaces.group import IGroupIntrospection, \
-                                               IGroupManagement
+    IGroupManagement
 from Products.PlonePAS.interfaces.capabilities import IGroupCapability
 from Products.PlonePAS.interfaces.plugins import IMutablePropertiesPlugin
 from Products.PlonePAS.plugins.group import PloneGroup
@@ -31,7 +30,6 @@ class PloneLDAPPluginBaseMixin:
         if acl is not None:
             return acl.getUserById(uid)
         return None
-
 
     # The following _ methods gracefuly adapted from PlonePAS.group.GroupManager
     security.declarePrivate('_createGroup')
@@ -53,7 +51,6 @@ class PloneLDAPPluginBaseMixin:
 
         return PloneGroup(group_id, name).__of__(self)
 
-
     security.declarePrivate('_findGroup')
     def _findGroup(self, plugins, group_id, title=None, request=None):
         """ group_id -> decorated_group
@@ -62,13 +59,11 @@ class PloneLDAPPluginBaseMixin:
 
         # See if the group can be retrieved from the cache
         view_name = '_findGroup-%s' % group_id
-        keywords = { 'group_id' : group_id
-                   , 'title' : title
-                   }
-        group = self.ZCacheable_get(view_name=view_name
-                                  , keywords=keywords
-                                  , default=None
-                                 )
+        keywords = {'group_id': group_id,
+                    'title': title}
+        group = self.ZCacheable_get(view_name=view_name,
+                                    keywords=keywords,
+                                    default=None)
 
         if group is None:
 
@@ -81,8 +76,8 @@ class PloneLDAPPluginBaseMixin:
                 if data:
                     group.addPropertysheet(propfinder_id, data)
 
-            groups = self._getPAS()._getGroupsForPrincipal(group, request
-                                                , plugins=plugins)
+            groups = self._getPAS()._getGroupsForPrincipal(group, request,
+                                                           plugins=plugins)
             group._addGroups(groups)
 
             rolemakers = plugins.listPlugins(IRolesPlugin)
@@ -99,10 +94,8 @@ class PloneLDAPPluginBaseMixin:
             # Cache the group if caching is enabled
             base_group = aq_base(group)
             if getattr(base_group, '_p_jar', None) is None:
-                self.ZCacheable_set(base_group
-                                   , view_name=view_name
-                                   , keywords=keywords
-                                  )
+                self.ZCacheable_set(base_group, view_name=view_name,
+                                    keywords=keywords)
 
         return group
 
@@ -115,22 +108,20 @@ class PloneLDAPPluginBaseMixin:
         criteria = {}
 
         if group_id is not None:
-            criteria[ 'id' ] = group_id
-            criteria[ 'exact_match' ] = True
+            criteria['id'] = group_id
+            criteria['exact_match'] = True
 
         if title is not None:
-            criteria[ 'title' ] = title
+            criteria['title'] = title
 
         if criteria:
             view_name = createViewName('_verifyGroup', group_id)
-            cached_info = self.ZCacheable_get(view_name=view_name
-                                             , keywords=criteria
-                                             , default=None
-                                            )
+            cached_info = self.ZCacheable_get(view_name=view_name,
+                                              keywords=criteria,
+                                              default=None)
 
             if cached_info is not None:
                 return cached_info
-
 
             enumerators = plugins.listPlugins(IGroupEnumerationPlugin)
 
@@ -141,10 +132,8 @@ class PloneLDAPPluginBaseMixin:
                     if info:
                         id = info[0]['id']
                         # Put the computed value into the cache
-                        self.ZCacheable_set(id
-                                           , view_name=view_name
-                                           , keywords=criteria
-                                           )
+                        self.ZCacheable_set(id, view_name=view_name,
+                                            keywords=criteria)
                         return id
 
                 except _SWALLOWABLE_PLUGIN_EXCEPTIONS:
@@ -155,14 +144,15 @@ class PloneLDAPPluginBaseMixin:
         return 0
 
 
-classImplements( PloneLDAPPluginBaseMixin
-               , IAuthenticationPlugin
-               , ICredentialsResetPlugin
-               , IPropertiesPlugin
-               , IMutablePropertiesPlugin
-               , IRolesPlugin
-               , IGroupIntrospection
-               , IGroupManagement
-               , IGroupCapability
-               )
+classImplements(
+    PloneLDAPPluginBaseMixin,
+    IAuthenticationPlugin,
+    ICredentialsResetPlugin,
+    IPropertiesPlugin,
+    IMutablePropertiesPlugin,
+    IRolesPlugin,
+    IGroupIntrospection,
+    IGroupManagement,
+    IGroupCapability,
+    )
 InitializeClass(PloneLDAPPluginBaseMixin)
