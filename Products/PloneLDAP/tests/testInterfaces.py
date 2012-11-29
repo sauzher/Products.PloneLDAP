@@ -1,9 +1,17 @@
 from Products.PloneLDAP.tests.integrationcase import PloneLDAPIntegrationTestCase
+from Products.PloneLDAP.plugins.base import PloneLDAPPluginBaseMixin
 from Products.PloneLDAP.plugins.ldap import PloneLDAPMultiPlugin
 from Products.PloneLDAP.plugins.ad import PloneActiveDirectoryMultiPlugin
 
 
 class TestInterfaces(PloneLDAPIntegrationTestCase):
+
+    def testPloneLDAPPluginBaseMixinInterfaces(self):
+        from Products.PlonePAS.interfaces.capabilities import IGroupCapability
+        self.assertTrue(IGroupCapability.implementedBy(PloneLDAPPluginBaseMixin))
+        # If that is true, then the following should be true too.
+        self.assertTrue(hasattr(PloneLDAPPluginBaseMixin, 'allowGroupAdd'))
+        self.assertTrue(hasattr(PloneLDAPPluginBaseMixin, 'allowGroupRemove'))
 
     def testGroupCapabilityAD(self):
         from Products.PlonePAS.interfaces.capabilities import IGroupCapability
