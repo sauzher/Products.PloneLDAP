@@ -10,6 +10,7 @@ from Products.PluggableAuthService.utils import classImplements
 from Products.PlonePAS.interfaces.capabilities import IDeleteCapability
 from Products.PlonePAS.interfaces.capabilities import IPasswordSetCapability
 from Products.PlonePAS.interfaces.plugins import IUserManagement
+from Products.PlonePAS.interfaces.capabilities import IGroupCapability
 from Products.PloneLDAP.plugins.base import PloneLDAPPluginBaseMixin
 from Products.PloneLDAP.mixins import UserAdderMixin
 from Products.PloneLDAP.mixins import UserManagementMixin
@@ -61,6 +62,7 @@ classImplements(PloneLDAPMultiPlugin
                , IDeleteCapability
                , IPasswordSetCapability
                , IUserManagement
+               , IGroupCapability
                , *implementedBy(LDAPMultiPlugin)
                )
 
