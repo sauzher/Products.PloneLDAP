@@ -1,7 +1,7 @@
 Changes
 =======
 
-1.2 (unreleased)
+1.2 (2012-11-30)
 ----------------
 
 * Only the LDAP plugin implements IGroupManagement, not the
