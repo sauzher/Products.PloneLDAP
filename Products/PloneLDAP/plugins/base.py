@@ -2,13 +2,11 @@ import logging
 from Globals import InitializeClass
 from Acquisition import aq_base
 from AccessControl import ClassSecurityInfo
-from Products.PluggableAuthService.utils import classImplements, createViewName
+from Products.PluggableAuthService.utils import createViewName
 from Products.PluggableAuthService.PluggableAuthService import \
         _SWALLOWABLE_PLUGIN_EXCEPTIONS
-
 from Products.PluggableAuthService.interfaces.plugins import \
-    IAuthenticationPlugin, IRolesPlugin, \
-    ICredentialsResetPlugin, IPropertiesPlugin, IGroupEnumerationPlugin
+    IRolesPlugin, IPropertiesPlugin, IGroupEnumerationPlugin
 
 from Products.PlonePAS.plugins.group import PloneGroup
 
@@ -140,11 +138,4 @@ class PloneLDAPPluginBaseMixin:
         return 0
 
 
-classImplements(
-    PloneLDAPPluginBaseMixin,
-    IAuthenticationPlugin,
-    ICredentialsResetPlugin,
-    IPropertiesPlugin,
-    IRolesPlugin,
-    )
 InitializeClass(PloneLDAPPluginBaseMixin)

@@ -6,7 +6,9 @@ from Products.LDAPMultiPlugins.ActiveDirectoryMultiPlugin\
         import ActiveDirectoryMultiPlugin
 from Products.PluggableAuthService.interfaces.plugins import \
      IUserEnumerationPlugin, IGroupsPlugin, IGroupEnumerationPlugin, \
-     IRoleEnumerationPlugin
+     IRoleEnumerationPlugin, IAuthenticationPlugin, IRolesPlugin, \
+    ICredentialsResetPlugin, IPropertiesPlugin
+
 from Products.PluggableAuthService.utils import classImplements
 from Products.PlonePAS.interfaces.group import IGroupIntrospection
 from Products.PlonePAS.interfaces.plugins import IMutablePropertiesPlugin
@@ -16,6 +18,7 @@ from Products.PloneLDAP.mixins import UserPropertiesMixin
 from Products.PloneLDAP.mixins import GroupIntrospectionMixin
 
 logger = logging.getLogger("PloneLDAP")
+
 
 class PloneActiveDirectoryMultiPlugin(PloneLDAPPluginBaseMixin,
         UserPropertiesMixin, GroupIntrospectionMixin,
@@ -54,6 +57,10 @@ classImplements(PloneActiveDirectoryMultiPlugin
                , IRoleEnumerationPlugin
                , IGroupIntrospection
                , IMutablePropertiesPlugin
+               , IAuthenticationPlugin
+               , ICredentialsResetPlugin
+               , IPropertiesPlugin
+               , IRolesPlugin
                , *implementedBy(ActiveDirectoryMultiPlugin)
                )
 

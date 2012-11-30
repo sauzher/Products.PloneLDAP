@@ -6,6 +6,10 @@ from Products.LDAPMultiPlugins.LDAPMultiPlugin import LDAPMultiPlugin
 from Products.PluggableAuthService.interfaces.plugins import \
      IUserEnumerationPlugin, IGroupsPlugin, IGroupEnumerationPlugin, \
      IRoleEnumerationPlugin, IUserAdderPlugin
+from Products.PluggableAuthService.interfaces.plugins import \
+    IAuthenticationPlugin, IRolesPlugin, \
+    ICredentialsResetPlugin, IPropertiesPlugin
+
 from Products.PluggableAuthService.utils import classImplements
 from Products.PlonePAS.interfaces.capabilities import IDeleteCapability
 from Products.PlonePAS.interfaces.capabilities import IPasswordSetCapability
@@ -69,6 +73,10 @@ classImplements(PloneLDAPMultiPlugin
                , IGroupIntrospection
                , IGroupManagement
                , IMutablePropertiesPlugin
+               , IAuthenticationPlugin
+               , ICredentialsResetPlugin
+               , IPropertiesPlugin
+               , IRolesPlugin
                , *implementedBy(LDAPMultiPlugin)
                )
 
