@@ -13,6 +13,7 @@ from Products.PlonePAS.interfaces.plugins import IUserManagement
 from Products.PlonePAS.interfaces.capabilities import IGroupCapability
 from Products.PlonePAS.interfaces.group import IGroupIntrospection
 from Products.PlonePAS.interfaces.group import IGroupManagement
+from Products.PlonePAS.interfaces.plugins import IMutablePropertiesPlugin
 
 from Products.PloneLDAP.plugins.base import PloneLDAPPluginBaseMixin
 from Products.PloneLDAP.mixins import UserAdderMixin
@@ -67,6 +68,7 @@ classImplements(PloneLDAPMultiPlugin
                , IGroupCapability
                , IGroupIntrospection
                , IGroupManagement
+               , IMutablePropertiesPlugin
                , *implementedBy(LDAPMultiPlugin)
                )
 

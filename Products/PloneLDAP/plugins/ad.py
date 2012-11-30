@@ -9,9 +9,10 @@ from Products.PluggableAuthService.interfaces.plugins import \
      IRoleEnumerationPlugin
 from Products.PluggableAuthService.utils import classImplements
 from Products.PlonePAS.interfaces.group import IGroupIntrospection
+from Products.PlonePAS.interfaces.plugins import IMutablePropertiesPlugin
+
 from Products.PloneLDAP.plugins.base import PloneLDAPPluginBaseMixin
 from Products.PloneLDAP.mixins import UserPropertiesMixin
-
 from Products.PloneLDAP.mixins import GroupIntrospectionMixin
 
 logger = logging.getLogger("PloneLDAP")
@@ -52,6 +53,7 @@ classImplements(PloneActiveDirectoryMultiPlugin
                , IGroupEnumerationPlugin
                , IRoleEnumerationPlugin
                , IGroupIntrospection
+               , IMutablePropertiesPlugin
                , *implementedBy(ActiveDirectoryMultiPlugin)
                )
 

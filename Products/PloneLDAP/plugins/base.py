@@ -10,7 +10,6 @@ from Products.PluggableAuthService.interfaces.plugins import \
     IAuthenticationPlugin, IRolesPlugin, \
     ICredentialsResetPlugin, IPropertiesPlugin, IGroupEnumerationPlugin
 
-from Products.PlonePAS.interfaces.plugins import IMutablePropertiesPlugin
 from Products.PlonePAS.plugins.group import PloneGroup
 
 logger = logging.getLogger("PloneLDAP")
@@ -146,7 +145,6 @@ classImplements(
     IAuthenticationPlugin,
     ICredentialsResetPlugin,
     IPropertiesPlugin,
-    IMutablePropertiesPlugin,
     IRolesPlugin,
     )
 InitializeClass(PloneLDAPPluginBaseMixin)
