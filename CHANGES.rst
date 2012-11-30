@@ -2,7 +2,7 @@ Changes
 =======
 
 1.2 (unreleased)
----
+----------------
 
 * Let only the LDAP multi plugin implement the IGroupCapability
   interface (add a user to a group or remove a user from a group).
