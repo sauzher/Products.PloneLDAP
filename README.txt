@@ -30,7 +30,12 @@ PloneLDAP integrates LDAP fully into your Plone site:
 * member properties for LDAP users need not be stored completely in the
   LDAP database: you can mix LDAP and ZODB-stored properties.
 
-Please note that if you are using Active Directory all access is read-only.
+
+Active Directory
+================
+
+Please note that if you are using Active Directory (AD) all access is
+read-only.  For example, you cannot add AD users to AD groups.
 
 
 Requirements
