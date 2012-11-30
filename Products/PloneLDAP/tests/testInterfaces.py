@@ -1,4 +1,11 @@
 from Products.PlonePAS.interfaces.capabilities import IGroupCapability
+from Products.PlonePAS.interfaces.group import IGroupIntrospection, \
+    IGroupManagement
+from Products.PlonePAS.interfaces.plugins import IMutablePropertiesPlugin
+from Products.PluggableAuthService.interfaces.plugins import \
+    IAuthenticationPlugin, IRolesPlugin, \
+    ICredentialsResetPlugin, IPropertiesPlugin, IGroupEnumerationPlugin
+from zope.interface.verify import verifyClass
 
 from Products.PloneLDAP.tests.integrationcase import PloneLDAPIntegrationTestCase
 from Products.PloneLDAP.plugins.base import PloneLDAPPluginBaseMixin
@@ -28,23 +35,94 @@ class TestInterfaces(PloneLDAPIntegrationTestCase):
 
     from zope.interface.verify import verifyClass
     self.assertTrue(verifyClass(IGroupCapability, PloneLDAPMultiPlugin))
+
+    It works for the PluggableAuthService interfaces though.
     """
 
-    def _testGroupCapability(self, plugin_class):
-        if IGroupCapability.implementedBy(plugin_class):
+    def _testGroupCapability(self, klass):
+        if IGroupCapability.implementedBy(klass):
             # This may or may not be true, but if it is true, then the
             # following should be true as well.
-            self.assertTrue(hasattr(plugin_class, 'allowGroupAdd'))
-            self.assertTrue(hasattr(plugin_class, 'allowGroupRemove'))
+            self.assertTrue(hasattr(klass, 'allowGroupAdd'))
+            self.assertTrue(hasattr(klass, 'allowGroupRemove'))
 
-    def testPloneLDAPPluginBaseMixinInterfaces(self):
-        self._testGroupCapability(PloneLDAPPluginBaseMixin)
+    def _testGroupIntrospection(self, klass):
+        if IGroupIntrospection.implementedBy(klass):
+            self.assertTrue(hasattr(klass, 'getGroupById'))
+            self.assertTrue(hasattr(klass, 'getGroupIds'))
+            self.assertTrue(hasattr(klass, 'getGroupMembers'))
+            self.assertTrue(hasattr(klass, 'getGroups'))
 
-    def testGroupCapabilityAD(self):
-        self._testGroupCapability(PloneActiveDirectoryMultiPlugin)
+    def _testGroupManagement(self, klass):
+        if IGroupManagement.implementedBy(klass):
+            self.assertTrue(hasattr(klass, 'addGroup'))
+            self.assertTrue(hasattr(klass, 'addPrincipalToGroup'))
+            self.assertTrue(hasattr(klass, 'removeGroup'))
+            self.assertTrue(hasattr(klass, 'removePrincipalFromGroup'))
+            self.assertTrue(hasattr(klass, 'setRolesForGroup'))
+            self.assertTrue(hasattr(klass, 'updateGroup'))
 
-    def testGroupCapabilityLDAP(self):
-        self._testGroupCapability(PloneLDAPMultiPlugin)
+    def _testMutableProperties(self, klass):
+        if IMutablePropertiesPlugin.implementedBy(klass):
+            self.assertTrue(hasattr(klass, 'deleteUser'))
+            self.assertTrue(hasattr(klass, 'getPropertiesForUser'))
+            self.assertTrue(hasattr(klass, 'setPropertiesForUser'))
+
+    def _testAuthentication(self, klass):
+        if IAuthenticationPlugin.implementedBy(klass):
+            self.assertTrue(verifyClass(IAuthenticationPlugin, klass))
+
+    def _testRoles(self, klass):
+        if IRolesPlugin.implementedBy(klass):
+            self.assertTrue(verifyClass(IRolesPlugin, klass))
+
+    def _testCredentialsReset(self, klass):
+        if ICredentialsResetPlugin.implementedBy(klass):
+            self.assertTrue(verifyClass(ICredentialsResetPlugin, klass))
+
+    def _testProperties(self, klass):
+        if IPropertiesPlugin.implementedBy(klass):
+            self.assertTrue(verifyClass(IPropertiesPlugin, klass))
+
+    def _testGroupEnumeration(self, klass):
+        if IGroupEnumerationPlugin.implementedBy(klass):
+            self.assertTrue(verifyClass(IGroupEnumerationPlugin, klass))
+
+    def testPluginBaseMixin(self):
+        klass = PloneLDAPPluginBaseMixin
+        self._testGroupCapability(klass)
+        self._testGroupIntrospection(klass)
+        self._testGroupManagement(klass)
+        self._testMutableProperties(klass)
+        self._testAuthentication(klass)
+        self._testRoles(klass)
+        self._testCredentialsReset(klass)
+        self._testProperties(klass)
+        self._testGroupEnumeration(klass)
+
+    def testPluginAD(self):
+        klass = PloneActiveDirectoryMultiPlugin
+        self._testGroupCapability(klass)
+        self._testGroupIntrospection(klass)
+        self._testGroupManagement(klass)
+        self._testMutableProperties(klass)
+        self._testAuthentication(klass)
+        self._testRoles(klass)
+        self._testCredentialsReset(klass)
+        self._testProperties(klass)
+        self._testGroupEnumeration(klass)
+
+    def testPluginLDAP(self):
+        klass = PloneLDAPMultiPlugin
+        self._testGroupCapability(klass)
+        self._testGroupIntrospection(klass)
+        self._testGroupManagement(klass)
+        self._testMutableProperties(klass)
+        self._testAuthentication(klass)
+        self._testRoles(klass)
+        self._testCredentialsReset(klass)
+        self._testProperties(klass)
+        self._testGroupEnumeration(klass)
 
 
 def test_suite():
