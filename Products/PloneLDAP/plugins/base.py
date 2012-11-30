@@ -10,7 +10,6 @@ from Products.PluggableAuthService.interfaces.plugins import \
     IAuthenticationPlugin, IRolesPlugin, \
     ICredentialsResetPlugin, IPropertiesPlugin, IGroupEnumerationPlugin
 
-from Products.PlonePAS.interfaces.group import IGroupIntrospection
 from Products.PlonePAS.interfaces.plugins import IMutablePropertiesPlugin
 from Products.PlonePAS.plugins.group import PloneGroup
 
@@ -149,6 +148,5 @@ classImplements(
     IPropertiesPlugin,
     IMutablePropertiesPlugin,
     IRolesPlugin,
-    IGroupIntrospection,
     )
 InitializeClass(PloneLDAPPluginBaseMixin)

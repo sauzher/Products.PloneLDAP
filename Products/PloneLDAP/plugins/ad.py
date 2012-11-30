@@ -8,6 +8,7 @@ from Products.PluggableAuthService.interfaces.plugins import \
      IUserEnumerationPlugin, IGroupsPlugin, IGroupEnumerationPlugin, \
      IRoleEnumerationPlugin
 from Products.PluggableAuthService.utils import classImplements
+from Products.PlonePAS.interfaces.group import IGroupIntrospection
 from Products.PloneLDAP.plugins.base import PloneLDAPPluginBaseMixin
 from Products.PloneLDAP.mixins import UserPropertiesMixin
 
@@ -50,6 +51,7 @@ classImplements(PloneActiveDirectoryMultiPlugin
                , IGroupsPlugin
                , IGroupEnumerationPlugin
                , IRoleEnumerationPlugin
+               , IGroupIntrospection
                , *implementedBy(ActiveDirectoryMultiPlugin)
                )
 
