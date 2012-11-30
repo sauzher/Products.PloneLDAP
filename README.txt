@@ -4,6 +4,12 @@ The PloneLDAP product is intended to make it easier to use LDAP connections in
 a Plone website. It builds upon the excellent LDAPMultiPlugins_ and
 LDAPUserFolder_ products which provide the basic LDAP infrastructure. 
 
+For Plone 3.3 or higher, we recommend using `plone.app.ldap`_ for
+having a nicer user interface for using LDAP with Plone.  This uses
+``PloneLDAP``.
+
+.. _`plone.app.ldap`: http://pypi.python.org/pypi/plone.app.ldap
+
 The extra functionality provided by this product require features
 beyond that are not part of the standard Pluggable Authentication Service,
 which is why they are not included in LDAPMultiPlugins.
