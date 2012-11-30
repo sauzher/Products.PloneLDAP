@@ -1,10 +1,15 @@
+from Products.PlonePAS.interfaces.capabilities import IDeleteCapability
 from Products.PlonePAS.interfaces.capabilities import IGroupCapability
-from Products.PlonePAS.interfaces.group import IGroupIntrospection, \
-    IGroupManagement
+from Products.PlonePAS.interfaces.capabilities import IPasswordSetCapability
+from Products.PlonePAS.interfaces.group import IGroupIntrospection
+from Products.PlonePAS.interfaces.group import IGroupManagement
 from Products.PlonePAS.interfaces.plugins import IMutablePropertiesPlugin
-from Products.PluggableAuthService.interfaces.plugins import \
-    IAuthenticationPlugin, IRolesPlugin, \
-    ICredentialsResetPlugin, IPropertiesPlugin, IGroupEnumerationPlugin
+from Products.PlonePAS.interfaces.plugins import IUserManagement
+from Products.PluggableAuthService.interfaces.plugins import (
+    IUserEnumerationPlugin, IGroupsPlugin, IGroupEnumerationPlugin,
+    IRoleEnumerationPlugin, IUserAdderPlugin,
+    IAuthenticationPlugin, IRolesPlugin,
+    ICredentialsResetPlugin, IPropertiesPlugin)
 from zope.interface.verify import verifyClass
 
 from Products.PloneLDAP.tests.integrationcase import PloneLDAPIntegrationTestCase
@@ -123,6 +128,46 @@ class TestInterfaces(PloneLDAPIntegrationTestCase):
         self._testCredentialsReset(klass)
         self._testProperties(klass)
         self._testGroupEnumeration(klass)
+
+    def testADImplements(self):
+        # The above checks are testing that IF we implement an
+        # interface we really DO implement it in practice.  If an
+        # interface is not implemented, we are fine with it.  But in
+        # this test, we check that some interfaces really are
+        # implemented.  This should contain all interfaces that are
+        # set with the 'class Implements' directive of the klass.
+        klass = PloneActiveDirectoryMultiPlugin
+
+        self.assertTrue(IAuthenticationPlugin.implementedBy(klass))
+        self.assertTrue(ICredentialsResetPlugin.implementedBy(klass))
+        self.assertTrue(IGroupEnumerationPlugin.implementedBy(klass))
+        self.assertTrue(IGroupIntrospection.implementedBy(klass))
+        self.assertTrue(IGroupsPlugin.implementedBy(klass))
+        self.assertTrue(IMutablePropertiesPlugin.implementedBy(klass))
+        self.assertTrue(IPropertiesPlugin.implementedBy(klass))
+        self.assertTrue(IRoleEnumerationPlugin.implementedBy(klass))
+        self.assertTrue(IRolesPlugin.implementedBy(klass))
+        self.assertTrue(IUserEnumerationPlugin.implementedBy(klass))
+
+    def testLDAPImplements(self):
+        klass = PloneLDAPMultiPlugin
+
+        self.assertTrue(IAuthenticationPlugin.implementedBy(klass))
+        self.assertTrue(ICredentialsResetPlugin.implementedBy(klass))
+        self.assertTrue(IDeleteCapability.implementedBy(klass))
+        self.assertTrue(IGroupCapability.implementedBy(klass))
+        self.assertTrue(IGroupEnumerationPlugin.implementedBy(klass))
+        self.assertTrue(IGroupIntrospection.implementedBy(klass))
+        self.assertTrue(IGroupManagement.implementedBy(klass))
+        self.assertTrue(IGroupsPlugin.implementedBy(klass))
+        self.assertTrue(IMutablePropertiesPlugin.implementedBy(klass))
+        self.assertTrue(IPasswordSetCapability.implementedBy(klass))
+        self.assertTrue(IPropertiesPlugin.implementedBy(klass))
+        self.assertTrue(IRoleEnumerationPlugin.implementedBy(klass))
+        self.assertTrue(IRolesPlugin.implementedBy(klass))
+        self.assertTrue(IUserAdderPlugin.implementedBy(klass))
+        self.assertTrue(IUserEnumerationPlugin.implementedBy(klass))
+        self.assertTrue(IUserManagement.implementedBy(klass))
 
 
 def test_suite():
