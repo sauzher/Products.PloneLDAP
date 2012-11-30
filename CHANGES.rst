@@ -4,6 +4,8 @@ Changes
 1.2 (unreleased)
 ----------------
 
+* Code moved to https://github.com/collective/Products.PloneLDAP
+
 * Let only the LDAP multi plugin implement the IGroupCapability
   interface (add a user to a group or remove a user from a group).
   Previously the AD multi plugin claimed to implement this too, but it
@@ -20,14 +22,15 @@ Changes
   Products.LDAPUserFolder 2.11 or later.
 
 
-1.1
----
+1.1 (2008-06-10)
+----------------
 
 * Switch license to ZPL.
 
 * Depend on the Products.LDAPMultiPlugins and Products.LDAPUserFolder.
 
 * Switch to egg-only releases from now on.
+
 
 1.0
 ---
