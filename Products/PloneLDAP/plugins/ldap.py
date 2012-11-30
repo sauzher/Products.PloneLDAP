@@ -11,11 +11,12 @@ from Products.PlonePAS.interfaces.capabilities import IDeleteCapability
 from Products.PlonePAS.interfaces.capabilities import IPasswordSetCapability
 from Products.PlonePAS.interfaces.plugins import IUserManagement
 from Products.PlonePAS.interfaces.capabilities import IGroupCapability
+from Products.PlonePAS.interfaces.group import IGroupManagement
+
 from Products.PloneLDAP.plugins.base import PloneLDAPPluginBaseMixin
 from Products.PloneLDAP.mixins import UserAdderMixin
 from Products.PloneLDAP.mixins import UserManagementMixin
 from Products.PloneLDAP.mixins import UserPropertiesMixin
-
 from Products.PloneLDAP.mixins import GroupCapabilityMixin
 from Products.PloneLDAP.mixins import GroupIntrospectionMixin
 from Products.PloneLDAP.mixins import GroupManagementMixin
@@ -63,6 +64,7 @@ classImplements(PloneLDAPMultiPlugin
                , IPasswordSetCapability
                , IUserManagement
                , IGroupCapability
+               , IGroupManagement
                , *implementedBy(LDAPMultiPlugin)
                )
 

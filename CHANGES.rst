@@ -4,6 +4,10 @@ Changes
 1.2 (unreleased)
 ----------------
 
+* Only the LDAP plugin implements IGroupManagement, not the
+  ActiveDirectory plugin.  This is for adding, removing and editing
+  groups.
+
 * Code moved to https://github.com/collective/Products.PloneLDAP
 
 * Let only the LDAP multi plugin implement the IGroupCapability
