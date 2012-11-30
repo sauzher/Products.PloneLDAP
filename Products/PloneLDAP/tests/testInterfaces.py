@@ -86,41 +86,36 @@ class TestInterfaces(PloneLDAPIntegrationTestCase):
             self.assertTrue(hasattr(klass, 'doChangeUser'))
             self.assertTrue(hasattr(klass, 'doDeleteUser'))
 
+    def _verify(self, iface, klass):
+        if iface.implementedBy(klass):
+            self.assertTrue(verifyClass(iface, klass))
+
     def _testAuthentication(self, klass):
-        if IAuthenticationPlugin.implementedBy(klass):
-            self.assertTrue(verifyClass(IAuthenticationPlugin, klass))
+        self._verify(IAuthenticationPlugin, klass)
 
     def _testRoles(self, klass):
-        if IRolesPlugin.implementedBy(klass):
-            self.assertTrue(verifyClass(IRolesPlugin, klass))
+        self._verify(IRolesPlugin, klass)
 
     def _testCredentialsReset(self, klass):
-        if ICredentialsResetPlugin.implementedBy(klass):
-            self.assertTrue(verifyClass(ICredentialsResetPlugin, klass))
+        self._verify(ICredentialsResetPlugin, klass)
 
     def _testProperties(self, klass):
-        if IPropertiesPlugin.implementedBy(klass):
-            self.assertTrue(verifyClass(IPropertiesPlugin, klass))
+        self._verify(IPropertiesPlugin, klass)
 
     def _testGroupEnumeration(self, klass):
-        if IGroupEnumerationPlugin.implementedBy(klass):
-            self.assertTrue(verifyClass(IGroupEnumerationPlugin, klass))
+        self._verify(IGroupEnumerationPlugin, klass)
 
     def _testUserEnumeration(self, klass):
-        if IUserEnumerationPlugin.implementedBy(klass):
-            self.assertTrue(verifyClass(IUserEnumerationPlugin, klass))
+        self._verify(IUserEnumerationPlugin, klass)
 
     def _testGroups(self, klass):
-        if IGroupsPlugin.implementedBy(klass):
-            self.assertTrue(verifyClass(IGroupsPlugin, klass))
+        self._verify(IGroupsPlugin, klass)
 
     def _testRoleEnumeration(self, klass):
-        if IRoleEnumerationPlugin.implementedBy(klass):
-            self.assertTrue(verifyClass(IRoleEnumerationPlugin, klass))
+        self._verify(IRoleEnumerationPlugin, klass)
 
     def _testUserAdder(self, klass):
-        if IUserAdderPlugin.implementedBy(klass):
-            self.assertTrue(verifyClass(IUserAdderPlugin, klass))
+        self._verify(IUserAdderPlugin, klass)
 
     def testPluginBaseMixin(self):
         klass = PloneLDAPPluginBaseMixin
