@@ -3,12 +3,11 @@ from zope.interface import implementedBy
 from AccessControl import ClassSecurityInfo
 from Globals import InitializeClass
 from Products.LDAPMultiPlugins.LDAPMultiPlugin import LDAPMultiPlugin
-from Products.PluggableAuthService.interfaces.plugins import \
-     IUserEnumerationPlugin, IGroupsPlugin, IGroupEnumerationPlugin, \
-     IRoleEnumerationPlugin, IUserAdderPlugin
-from Products.PluggableAuthService.interfaces.plugins import \
-    IAuthenticationPlugin, IRolesPlugin, \
-    ICredentialsResetPlugin, IPropertiesPlugin
+from Products.PluggableAuthService.interfaces.plugins import (
+    IUserEnumerationPlugin, IGroupsPlugin, IGroupEnumerationPlugin,
+    IRoleEnumerationPlugin, IUserAdderPlugin,
+    IAuthenticationPlugin, IRolesPlugin,
+    ICredentialsResetPlugin, IPropertiesPlugin)
 
 from Products.PluggableAuthService.utils import classImplements
 from Products.PlonePAS.interfaces.capabilities import IDeleteCapability
@@ -29,6 +28,7 @@ from Products.PloneLDAP.mixins import GroupManagementMixin
 
 logger = logging.getLogger("PloneLDAP")
 
+
 class PloneLDAPMultiPlugin(PloneLDAPPluginBaseMixin,
         UserAdderMixin, UserManagementMixin, UserPropertiesMixin,
         GroupCapabilityMixin, GroupIntrospectionMixin, GroupManagementMixin,
@@ -38,15 +38,9 @@ class PloneLDAPMultiPlugin(PloneLDAPPluginBaseMixin,
     security = ClassSecurityInfo()
     meta_type = "Plone LDAP plugin"
 
-
     security.declarePrivate('enumerateGroups')
-    def enumerateGroups( self
-                       , id=None
-                       , exact_match=False
-                       , sort_by=None
-                       , max_results=None
-                       , **kw
-                       ):
+    def enumerateGroups(self, id=None, exact_match=False, sort_by=None,
+                        max_results=None, **kw):
         """Group enumeration.
 
         This method adds a workaround to enforce LDAPUserFolder to return a
@@ -60,25 +54,25 @@ class PloneLDAPMultiPlugin(PloneLDAPPluginBaseMixin,
                 max_results, **kw)
 
 
-classImplements(PloneLDAPMultiPlugin
-               , IUserEnumerationPlugin
-               , IGroupsPlugin
-               , IUserAdderPlugin
-               , IGroupEnumerationPlugin
-               , IRoleEnumerationPlugin
-               , IDeleteCapability
-               , IPasswordSetCapability
-               , IUserManagement
-               , IGroupCapability
-               , IGroupIntrospection
-               , IGroupManagement
-               , IMutablePropertiesPlugin
-               , IAuthenticationPlugin
-               , ICredentialsResetPlugin
-               , IPropertiesPlugin
-               , IRolesPlugin
-               , *implementedBy(LDAPMultiPlugin)
-               )
+classImplements(
+    PloneLDAPMultiPlugin,
+    IUserEnumerationPlugin,
+    IGroupsPlugin,
+    IUserAdderPlugin,
+    IGroupEnumerationPlugin,
+    IRoleEnumerationPlugin,
+    IDeleteCapability,
+    IPasswordSetCapability,
+    IUserManagement,
+    IGroupCapability,
+    IGroupIntrospection,
+    IGroupManagement,
+    IMutablePropertiesPlugin,
+    IAuthenticationPlugin,
+    ICredentialsResetPlugin,
+    IPropertiesPlugin,
+    IRolesPlugin,
+    *implementedBy(LDAPMultiPlugin)
+    )
 
 InitializeClass(PloneLDAPMultiPlugin)
-

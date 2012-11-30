@@ -2,12 +2,12 @@ import logging
 from zope.interface import implementedBy
 from AccessControl import ClassSecurityInfo
 from Globals import InitializeClass
-from Products.LDAPMultiPlugins.ActiveDirectoryMultiPlugin\
-        import ActiveDirectoryMultiPlugin
-from Products.PluggableAuthService.interfaces.plugins import \
-     IUserEnumerationPlugin, IGroupsPlugin, IGroupEnumerationPlugin, \
-     IRoleEnumerationPlugin, IAuthenticationPlugin, IRolesPlugin, \
-    ICredentialsResetPlugin, IPropertiesPlugin
+from Products.LDAPMultiPlugins.ActiveDirectoryMultiPlugin import (
+    ActiveDirectoryMultiPlugin)
+from Products.PluggableAuthService.interfaces.plugins import (
+    IUserEnumerationPlugin, IGroupsPlugin, IGroupEnumerationPlugin,
+    IRoleEnumerationPlugin, IAuthenticationPlugin, IRolesPlugin,
+    ICredentialsResetPlugin, IPropertiesPlugin)
 
 from Products.PluggableAuthService.utils import classImplements
 from Products.PlonePAS.interfaces.group import IGroupIntrospection
@@ -28,15 +28,9 @@ class PloneActiveDirectoryMultiPlugin(PloneLDAPPluginBaseMixin,
     security = ClassSecurityInfo()
     meta_type = "Plone Active Directory plugin"
 
-
     security.declarePrivate('enumerateGroups')
-    def enumerateGroups( self
-                       , id=None
-                       , exact_match=False
-                       , sort_by=None
-                       , max_results=None
-                       , **kw
-                       ):
+    def enumerateGroups(self, id=None, exact_match=False, sort_by=None,
+                        max_results=None, **kw):
         """Group enumeration.
 
         This method adds a workaround to enforce LDAPUserFolder to return a
@@ -50,19 +44,19 @@ class PloneActiveDirectoryMultiPlugin(PloneLDAPPluginBaseMixin,
                 exact_match, sort_by, max_results, **kw)
 
 
-classImplements(PloneActiveDirectoryMultiPlugin
-               , IUserEnumerationPlugin
-               , IGroupsPlugin
-               , IGroupEnumerationPlugin
-               , IRoleEnumerationPlugin
-               , IGroupIntrospection
-               , IMutablePropertiesPlugin
-               , IAuthenticationPlugin
-               , ICredentialsResetPlugin
-               , IPropertiesPlugin
-               , IRolesPlugin
-               , *implementedBy(ActiveDirectoryMultiPlugin)
-               )
+classImplements(
+    PloneActiveDirectoryMultiPlugin,
+    IUserEnumerationPlugin,
+    IGroupsPlugin,
+    IGroupEnumerationPlugin,
+    IRoleEnumerationPlugin,
+    IGroupIntrospection,
+    IMutablePropertiesPlugin,
+    IAuthenticationPlugin,
+    ICredentialsResetPlugin,
+    IPropertiesPlugin,
+    IRolesPlugin,
+    *implementedBy(ActiveDirectoryMultiPlugin)
+    )
 
 InitializeClass(PloneActiveDirectoryMultiPlugin)
-
