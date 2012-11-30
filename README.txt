@@ -32,13 +32,22 @@ Requirements
 
 * Plone 3.0 or later
 * python-ldap_
-* LDAPUserFolder 2.8
-* LDAPMultiPlugins 1.5
+* LDAPUserFolder 2.8 or later
+* LDAPMultiPlugins 1.5 or later
 
 .. _python-ldap: http://python-ldap.sourceforge.net/
 
 Products.PloneLDAP depends on LDAPMultiPlugins and LDAPUserFolder, so they
 will be installed automatically.
+
+For the record, it has been tested with these most recent versions::
+
+  Plone = 4.2.2
+  Products.LDAPMultiPlugins = 1.14
+  Products.LDAPUserFolder = 2.24
+  dataflake.fakeldap = 1.1
+  python-ldap = 2.4.10
+
 
 Installation
 ============
