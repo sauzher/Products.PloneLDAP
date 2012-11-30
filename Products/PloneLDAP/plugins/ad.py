@@ -46,16 +46,16 @@ class PloneActiveDirectoryMultiPlugin(PloneLDAPPluginBaseMixin,
 
 classImplements(
     PloneActiveDirectoryMultiPlugin,
-    IUserEnumerationPlugin,
-    IGroupsPlugin,
-    IGroupEnumerationPlugin,
-    IRoleEnumerationPlugin,
-    IGroupIntrospection,
-    IMutablePropertiesPlugin,
     IAuthenticationPlugin,
     ICredentialsResetPlugin,
+    IGroupEnumerationPlugin,
+    IGroupIntrospection,
+    IGroupsPlugin,
+    IMutablePropertiesPlugin,
     IPropertiesPlugin,
+    IRoleEnumerationPlugin,
     IRolesPlugin,
+    IUserEnumerationPlugin,
     *implementedBy(ActiveDirectoryMultiPlugin)
     )
 
