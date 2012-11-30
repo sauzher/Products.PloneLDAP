@@ -73,6 +73,19 @@ class TestInterfaces(PloneLDAPIntegrationTestCase):
             self.assertTrue(hasattr(klass, 'getPropertiesForUser'))
             self.assertTrue(hasattr(klass, 'setPropertiesForUser'))
 
+    def _testDeleteCapability(self, klass):
+        if IDeleteCapability.implementedBy(klass):
+            self.assertTrue(hasattr(klass, 'allowDeletePrincipal'))
+
+    def _testPasswordSetCapability(self, klass):
+        if IPasswordSetCapability.implementedBy(klass):
+            self.assertTrue(hasattr(klass, 'allowPasswordSet'))
+
+    def _testUserManagement(self, klass):
+        if IUserManagement.implementedBy(klass):
+            self.assertTrue(hasattr(klass, 'doChangeUser'))
+            self.assertTrue(hasattr(klass, 'doDeleteUser'))
+
     def _testAuthentication(self, klass):
         if IAuthenticationPlugin.implementedBy(klass):
             self.assertTrue(verifyClass(IAuthenticationPlugin, klass))
@@ -93,17 +106,40 @@ class TestInterfaces(PloneLDAPIntegrationTestCase):
         if IGroupEnumerationPlugin.implementedBy(klass):
             self.assertTrue(verifyClass(IGroupEnumerationPlugin, klass))
 
+    def _testUserEnumeration(self, klass):
+        if IUserEnumerationPlugin.implementedBy(klass):
+            self.assertTrue(verifyClass(IUserEnumerationPlugin, klass))
+
+    def _testGroups(self, klass):
+        if IGroupsPlugin.implementedBy(klass):
+            self.assertTrue(verifyClass(IGroupsPlugin, klass))
+
+    def _testRoleEnumeration(self, klass):
+        if IRoleEnumerationPlugin.implementedBy(klass):
+            self.assertTrue(verifyClass(IRoleEnumerationPlugin, klass))
+
+    def _testUserAdder(self, klass):
+        if IUserAdderPlugin.implementedBy(klass):
+            self.assertTrue(verifyClass(IUserAdderPlugin, klass))
+
     def testPluginBaseMixin(self):
         klass = PloneLDAPPluginBaseMixin
         self._testGroupCapability(klass)
         self._testGroupIntrospection(klass)
         self._testGroupManagement(klass)
         self._testMutableProperties(klass)
+        self._testDeleteCapability(klass)
+        self._testPasswordSetCapability(klass)
+        self._testUserManagement(klass)
         self._testAuthentication(klass)
         self._testRoles(klass)
         self._testCredentialsReset(klass)
         self._testProperties(klass)
         self._testGroupEnumeration(klass)
+        self._testUserEnumeration(klass)
+        self._testGroups(klass)
+        self._testRoleEnumeration(klass)
+        self._testUserAdder(klass)
 
     def testPluginAD(self):
         klass = PloneActiveDirectoryMultiPlugin
@@ -111,11 +147,18 @@ class TestInterfaces(PloneLDAPIntegrationTestCase):
         self._testGroupIntrospection(klass)
         self._testGroupManagement(klass)
         self._testMutableProperties(klass)
+        self._testDeleteCapability(klass)
+        self._testPasswordSetCapability(klass)
+        self._testUserManagement(klass)
         self._testAuthentication(klass)
         self._testRoles(klass)
         self._testCredentialsReset(klass)
         self._testProperties(klass)
         self._testGroupEnumeration(klass)
+        self._testUserEnumeration(klass)
+        self._testGroups(klass)
+        self._testRoleEnumeration(klass)
+        self._testUserAdder(klass)
 
     def testPluginLDAP(self):
         klass = PloneLDAPMultiPlugin
@@ -123,11 +166,18 @@ class TestInterfaces(PloneLDAPIntegrationTestCase):
         self._testGroupIntrospection(klass)
         self._testGroupManagement(klass)
         self._testMutableProperties(klass)
+        self._testDeleteCapability(klass)
+        self._testPasswordSetCapability(klass)
+        self._testUserManagement(klass)
         self._testAuthentication(klass)
         self._testRoles(klass)
         self._testCredentialsReset(klass)
         self._testProperties(klass)
         self._testGroupEnumeration(klass)
+        self._testUserEnumeration(klass)
+        self._testGroups(klass)
+        self._testRoleEnumeration(klass)
+        self._testUserAdder(klass)
 
     def testADImplements(self):
         # The above checks are testing that IF we implement an
