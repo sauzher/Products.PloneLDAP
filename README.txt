@@ -87,7 +87,7 @@ After creating the plugin it has to be activated. To do this go to the
 plugin in the ZMI and go to the 'navigate' tab, select all plugin types
 and click on the 'Update' button.
 
-As a final change you will need to reorder the plugin order. Reodering
+As a final change you will need to reorder the plugin order. Reordering
 can be done by clicking on the name of a plugin type, selecting a plugin
 in the 'Active Plugins' list and using the up and down arrows to change
 the ordering. The required ordering changes are:
