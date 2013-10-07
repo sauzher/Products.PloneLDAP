@@ -47,7 +47,6 @@ class UserPropertiesMixin:
                     changes[key] = [x.strip() for x in value.split(';')]
                 else:
                     changes[key] = [value.strip()]
-                    changes[key] = [value.strip()]
 
         acl._delegate.modify(ldap_user.dn, changes)
 

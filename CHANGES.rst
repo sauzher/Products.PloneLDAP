@@ -4,7 +4,8 @@ Changes
 1.3 (unreleased)
 ----------------
 
-- Nothing changed yet.
+* Remove duplicate line with no effect.
+  [saily]
 
 
 1.2 (2012-11-30)
@@ -28,7 +29,7 @@ Changes
   receives a string instead of an iterable.
 
 * When creating an Active Directory plugin configure LDAPUserFolder
-  to ignore disabled or non-user accounts. This requires 
+  to ignore disabled or non-user accounts. This requires
   Products.LDAPUserFolder 2.11 or later.
 
 
@@ -60,7 +61,7 @@ Changes
   for discovering this and helping me fix it.
 
 * Add some protection against invalid (None) results of group related
-  searches. 
+  searches.
 
 * Add more information about the capabilities and caveats of LDAP use in Plone.
 
@@ -83,6 +84,6 @@ Changes
 
 * Fix setting of object classes when creating a new plugin instance.
 
-* Fix member property sheets: RAM caching does not like it when you try 
+* Fix member property sheets: RAM caching does not like it when you try
   to store non-pickleable data.
- 
+
