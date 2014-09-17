@@ -42,7 +42,10 @@ class GroupManagementMixin:
 
     security.declarePrivate('updateGroup')
     def updateGroup(self, id, **kw):
-        raise NotImplementedError()
+        # Don't complain unless we are actually asked to do something.
+        values = [v for v in kw.values() if v is not None]
+        if len(values) > 0:
+            raise NotImplementedError()
 
     security.declarePrivate('setRolesForGroup')
     def setRolesForGroup(self, group_id, roles=()):
