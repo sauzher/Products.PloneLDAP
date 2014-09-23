@@ -6,6 +6,9 @@ Changes
 
 * Remove duplicate line with no effect.
   [saily]
+* Support mapping LDAP groups to Plone roles via the Users and Groups
+  control panel.
+  [adaugherity]
 
 
 1.2 (2012-11-30)
