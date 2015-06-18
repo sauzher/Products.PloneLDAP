@@ -136,7 +136,7 @@ def manage_addPloneActiveDirectoryMultiPlugin(self, id, title,
     # used by services such as IIS (PASSWD_NOTREQD flag)
     filters.append("(!(userAccountControl:1.2.840.113556.1.4.803:=32))")
 
-    luf._extra_user_filer = "(&%s)" % "".join(filters)
+    luf._extra_user_filter = "(&%s)" % "".join(filters)
 
     # Redirect back to the user folder
     if REQUEST is not None:

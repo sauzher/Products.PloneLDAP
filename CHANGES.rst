@@ -4,8 +4,14 @@ Changes
 1.3 (unreleased)
 ----------------
 
+* Fix typo for custom extra_user_filter.
+  See comments below about "When creating an Active Directory plugin
+  ... ignore disabled or non-user accounts ..."
+  [mamico]
+
 * Remove duplicate line with no effect.
   [saily]
+
 * Support mapping LDAP groups to Plone roles via the Users and Groups
   control panel.
   [adaugherity]
