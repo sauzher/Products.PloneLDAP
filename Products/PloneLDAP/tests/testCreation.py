@@ -50,6 +50,12 @@ class TestADCreation(TestLDAPCreation):
                 PloneActiveDirectoryMultiPlugin.meta_type)
 
 
+    def testADAttributes(self):
+        luf=self.folder.ldap._getLDAPUserFolder()
+        self.assertEqual(luf._extra_user_filter,
+            '(&(!(userAccountControl:1.2.840.113556.1.4.803:=2))'
+            '(userAccountControl:1.2.840.113556.1.4.803:=512)'
+            '(!(userAccountControl:1.2.840.113556.1.4.803:=32)))')
 
 def test_suite():
     from unittest import TestSuite, makeSuite
