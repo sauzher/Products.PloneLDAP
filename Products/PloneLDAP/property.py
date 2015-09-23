@@ -66,6 +66,8 @@ class LDAPPropertySheet(UserPropertySheet):
             #the value in the mapping is an utf-8 encoded byte string, while self._properties
             #stores unicode object. this is NOT the same as of python 2.x, python 3 will handle
             #that differently
+            if value is None:
+                continue
             value=safe_unicode(value)
             if key in schema and self._properties[key]!=value:
                 if schema[key][1]=="lines":
