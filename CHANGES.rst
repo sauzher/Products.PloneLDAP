@@ -4,6 +4,9 @@ Changes
 1.3 (unreleased)
 ----------------
 
+* Fix setProperties to not set a None value.
+  [allusa]
+
 * Fix typo for custom extra_user_filter.
   See comments below about "When creating an Active Directory plugin
   ... ignore disabled or non-user accounts ..."
