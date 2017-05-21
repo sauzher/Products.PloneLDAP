@@ -1,7 +1,7 @@
 # In case CMFPlone.utils is available we use it, otherwise we define our own,
 # which is a plain copy of it, as of 2010-07-21
 try:
-    from Products.CMFPlone.utils import safe_unicode
+    from .Products.CMFPlone.utils import safe_unicode
     safe_unicode  # pyflakes
 except ImportError:
     def safe_unicode(value, encoding='utf-8'):
@@ -26,11 +26,11 @@ except ImportError:
             >>> print safe_unicode(None)
             None
         """
-        if isinstance(value, unicode):
+        if isinstance(value, str):
             return value
-        elif isinstance(value, basestring):
+        elif isinstance(value, str):
             try:
-                value = unicode(value, encoding)
+                value = str(value, encoding)
             except (UnicodeDecodeError):
                 value = value.decode('utf-8', 'replace')
         return value

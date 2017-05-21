@@ -1,13 +1,13 @@
 from AccessControl.Permissions import add_user_folders
-from Products.PluggableAuthService.PluggableAuthService import \
+from .Products.PluggableAuthService.PluggableAuthService import \
                 registerMultiPlugin
-from Products.PloneLDAP.plugins.ldap import PloneLDAPMultiPlugin
-from Products.PloneLDAP.plugins.ad import PloneActiveDirectoryMultiPlugin
-from Products.PloneLDAP.factory import manage_addPloneLDAPMultiPluginForm
-from Products.PloneLDAP.factory import manage_addPloneLDAPMultiPlugin
-from Products.PloneLDAP.factory  \
+from .Products.PloneLDAP.plugins.ldap import PloneLDAPMultiPlugin
+from .Products.PloneLDAP.plugins.ad import PloneActiveDirectoryMultiPlugin
+from .Products.PloneLDAP.factory import manage_addPloneLDAPMultiPluginForm
+from .Products.PloneLDAP.factory import manage_addPloneLDAPMultiPlugin
+from .Products.PloneLDAP.factory  \
         import manage_addPloneActiveDirectoryMultiPluginForm
-from Products.PloneLDAP.factory \
+from .Products.PloneLDAP.factory \
         import manage_addPloneActiveDirectoryMultiPlugin
 
 registerMultiPlugin(PloneLDAPMultiPlugin.meta_type)

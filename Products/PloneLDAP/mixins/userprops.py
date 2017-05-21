@@ -36,8 +36,8 @@ class UserPropertiesMixin:
             return
 
         schemaproperties = dict([(x['public_name'], x['ldap_name']) \
-                for x in acl.getSchemaConfig().values() if x['public_name']])
-        multivaluedprops = [x['public_name'] for x in acl.getSchemaConfig().values() \
+                for x in list(acl.getSchemaConfig().values()) if x['public_name']])
+        multivaluedprops = [x['public_name'] for x in list(acl.getSchemaConfig().values()) \
                if x['multivalued']]
 
         changes={}
