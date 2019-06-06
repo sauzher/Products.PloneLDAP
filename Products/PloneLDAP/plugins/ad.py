@@ -1,7 +1,7 @@
 import logging
 from zope.interface import implementedBy
 from AccessControl import ClassSecurityInfo
-from Globals import InitializeClass
+from AccessControl.class_init import InitializeClass
 from Products.LDAPMultiPlugins.ActiveDirectoryMultiPlugin import (
     ActiveDirectoryMultiPlugin)
 from Products.PluggableAuthService.interfaces.plugins import (

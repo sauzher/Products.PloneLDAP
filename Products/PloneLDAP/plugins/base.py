@@ -1,7 +1,7 @@
 import logging
-from Globals import InitializeClass
 from Acquisition import aq_base
 from AccessControl import ClassSecurityInfo
+from AccessControl.class_init import InitializeClass
 from Products.PluggableAuthService.utils import createViewName
 from Products.PluggableAuthService.PluggableAuthService import \
         _SWALLOWABLE_PLUGIN_EXCEPTIONS

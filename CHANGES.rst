@@ -19,6 +19,9 @@ Changes
   control panel.
   [adaugherity]
 
+* Zope 4 compatibility: Replaced broken imports of InitializeClass.
+  [reinhardt]
+
 
 1.2 (2012-11-30)
 ----------------
