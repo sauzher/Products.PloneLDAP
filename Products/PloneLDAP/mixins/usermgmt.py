@@ -1,5 +1,5 @@
-from Globals import InitializeClass
 from AccessControl import ClassSecurityInfo
+from AccessControl.class_init import InitializeClass
 
 class UserManagementMixin:
     """Implement Products.PlonePAS.interfaces.plugins.IUserManagement,

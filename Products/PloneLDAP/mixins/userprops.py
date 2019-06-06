@@ -1,5 +1,5 @@
-from Globals import InitializeClass
 from AccessControl import ClassSecurityInfo
+from AccessControl.class_init import InitializeClass
 from Products.PloneLDAP.property import LDAPPropertySheet
 
 class UserPropertiesMixin:

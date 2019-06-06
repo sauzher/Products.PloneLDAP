@@ -1,6 +1,6 @@
 import logging
-from Globals import InitializeClass
 from AccessControl import ClassSecurityInfo
+from AccessControl.class_init import InitializeClass
 
 logger = logging.getLogger("PloneLDAP")
 
