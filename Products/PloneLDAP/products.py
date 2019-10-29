@@ -1,8 +1,8 @@
-from zope.interface import implements
+from zope.interface import implementer
 from Products.CMFQuickInstallerTool.interfaces import INonInstallable
 
 class HiddenLDAPProducts(object):
-    implements(INonInstallable)
+    implementer(INonInstallable)
 
     def getNonInstallableProducts(self):
         return [ "LDAPUserFolder" ]
