@@ -1,8 +1,8 @@
 from Acquisition import aq_base
-from Products.PageTemplates.PageTemplateFile import PageTemplateFile
-from Products.LDAPUserFolder import manage_addLDAPUserFolder
-from Products.PloneLDAP.plugins.ldap import PloneLDAPMultiPlugin
-from Products.PloneLDAP.plugins.ad import PloneActiveDirectoryMultiPlugin
+from .Products.PageTemplates.PageTemplateFile import PageTemplateFile
+from .Products.LDAPUserFolder import manage_addLDAPUserFolder
+from .Products.PloneLDAP.plugins.ldap import PloneLDAPMultiPlugin
+from .Products.PloneLDAP.plugins.ad import PloneActiveDirectoryMultiPlugin
 
 
 manage_addPloneLDAPMultiPluginForm = PageTemplateFile("www/addLdapPlugin",

@@ -1,14 +1,8 @@
 from Acquisition import aq_inner
-from Products.PluggableAuthService.utils import classImplements
-from Products.PluggableAuthService.UserPropertySheet import UserPropertySheet
-from Products.PlonePAS.interfaces.propertysheets import IMutablePropertySheet
-from Products.PloneLDAP._utils import safe_unicode
-
-
-class UserError(KeyError):
-    def __init__(self, *args, **kwargs):
-        msg = args and args[0] or self.__doc__
-        self.__doc__ = msg
+from .Products.PluggableAuthService.utils import classImplements
+from .Products.PluggableAuthService.UserPropertySheet import UserPropertySheet
+from .Products.PlonePAS.interfaces.propertysheets import IMutablePropertySheet
+from .Products.PloneLDAP._utils import safe_unicode
 
 
 class LDAPPropertySheet(UserPropertySheet):
@@ -20,6 +14,7 @@ class LDAPPropertySheet(UserPropertySheet):
                              x['multivalued'] and 'lines' or 'string')
                             for x in acl.getSchemaConfig().values()
                             if x['public_name']]
+
 
         properties = self._getCache(user)
         if properties is None:
@@ -37,7 +32,9 @@ class LDAPPropertySheet(UserPropertySheet):
 
         # Do not pretend to have any properties if the user is not in LDAP
         if ldap_user is None:
-            raise UserError("User not in LDAP")
+
+            raise KeyError("User not in LDAP")
+
 
         for (ldapname, zopename, type) in self._ldapschema:
             if ldap_user._properties.get(ldapname, None) is not None:
@@ -64,7 +61,8 @@ class LDAPPropertySheet(UserPropertySheet):
         schema = dict([(x[1], (x[0], x[2])) for x in self._ldapschema])
         changes = {}
 
-        for (key, value) in mapping.items():
+
+        for (key,value) in list(mapping.items()):
             #the value in the mapping is an utf-8 encoded byte string, while self._properties
             #stores unicode object. this is NOT the same as of python 2.x, python 3 will handle
             #that differently
@@ -73,10 +71,11 @@ class LDAPPropertySheet(UserPropertySheet):
             value = safe_unicode(value)
             if key in schema and self._properties[key] != value:
                 if schema[key][1] == "lines":
-                    if isinstance(value, basestring):
+                    if isinstance(value, str):
                         value = value.splitlines()
                     value = [x.strip() for x in value]
                     changes[schema[key][0]] = value
+
                 else:
                     value = value.strip()
                     changes[schema[key][0]] = [value]

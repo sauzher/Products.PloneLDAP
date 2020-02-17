@@ -43,7 +43,7 @@ class GroupManagementMixin:
     security.declarePrivate('updateGroup')
     def updateGroup(self, id, **kw):
         # Don't complain unless we are actually asked to do something.
-        values = [v for v in kw.values() if v is not None]
+        values = [v for v in list(kw.values()) if v is not None]
         if len(values) > 0:
             raise NotImplementedError()
 
